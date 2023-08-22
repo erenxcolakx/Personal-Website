@@ -20,13 +20,13 @@
 #intro{
     height: 600px;
 }
-
 .intro-eren{
     color: white;
     font-size: 5rem;
     display: flex;
     align-items: center;
     font-family: 'Dancing Script', cursive;
+    text-shadow: 0 0 12px #1e00ff, 0 5px 12px #2600ff , 0 5px 12px #0d00ff;
 }
 .flex{
     display: flex;
@@ -79,55 +79,55 @@
 }
 .framehorizontal {
   border-radius: 10px;
-  width: 300px; /* Çerçevenin genişliği */
-  height: 250px; /* Çerçevenin yüksekliği */
-  overflow: hidden; /* İçeriği taşıyan resmi kesmek için gizli taşma ayarı */
-  position: relative; /* Pozisyonu ayarlayarak içerik kaydırma yapacağız */
+  width: 300px;
+  height: 250px; 
+  overflow: hidden;
+  position: relative; 
   margin-left: 10px;
 }
 
 .framehorizontal img {
-  position: absolute; /* Pozisyonu mutlaka ayarlayın, bu şekilde hareket ettirilebilir */
-  top: 0; /* Başlangıçta en üstte */
-  transition: transform 5s ease; /* Yumuşak geçiş efekti ekler */
+  position: absolute;
+  top: 0;
+  transition: transform 5s ease; /* Soft passing animation*/
   border-radius: 10px;
 }
 .framevertical {
   border-radius: 10px;
-  width: 500px; /* Çerçevenin genişliği */
-  height: 200px; /* Çerçevenin yüksekliği */
-  overflow: hidden; /* İçeriği taşıyan resmi kesmek için gizli taşma ayarı */
-  position: relative;/* Pozisyonu ayarlayarak içerik kaydırma yapacağız */
+  width: 500px; /* Frame width */
+  height: 200px; /* Frame height */
+  overflow: hidden; /* Hidden bleed setting to cut out the picture that carries the content */
+  position: relative;/* We will scroll content by adjusting the position */
   margin-left: 10px;
 }
 .framevertical img {
-  position: absolute; /* Pozisyonu mutlaka ayarlayın, bu şekilde hareket ettirilebilir */
-  top: 0; /* Başlangıçta en üstte */
-  transition: transform 5s ease; /* Yumuşak geçiş efekti ekler */
+  position: absolute;
+  top: 0;
+  transition: transform 5s ease; /* Soft passing animation*/
   border-radius: 10px;
 }
 
 .framevertical:hover img { 
-  transform: translateY(-75%); /* Sağa kaydırma, -100% resmi çerçevenin genişliği kadar sola kaydırır */
+  transform: translateY(-75%); /* Slides to down*/
 }
 @media screen and (max-width: 768px) {
   .framehorizontal:hover img {
-    transform: translateX(-25%); /* Sağa kaydırma, -100% resmi çerçevenin genişliği kadar sola kaydırır */
+    transform: translateX(-25%); /* Slides to right*/
   }
 }
 @media screen and (min-width: 992px) and (max-width: 1200px) {
   .framehorizontal:hover img {
-    transform: translateX(-28%); /* Sağa kaydırma, -100% resmi çerçevenin genişliği kadar sola kaydırır */
+    transform: translateX(-28%); /* Slides to right*/
   }
 }
 @media screen and (min-width: 1200px) and (max-width: 1399px) {
   .framehorizontal:hover img {
-    transform: translateX(-13%); /* Sağa kaydırma, -100% resmi çerçevenin genişliği kadar sola kaydırır */
+    transform: translateX(-13%); /* Slides to right*/
   }
 }
 @media screen and (min-width: 1399px) {
   .framehorizontal:hover img {
-    transform: translateX(-1%); /* Sağa kaydırma, -100% resmi çerçevenin genişliği kadar sola kaydırır */
+    transform: translateX(-1%); /* Slides to right*/
   }
 }
 
@@ -142,16 +142,19 @@
   background-color: rgb(194, 194, 194);
   border-radius: 20px;
 }
-.python {width: 80%; background-color: #ffd343; border-radius: 20px;} /* Blue */
-.numpy {width: 60%; background-color: #0049b0; border-radius: 20px;} /* Dark Grey */
-.pandas {width: 65%; background-color: #0c004f; border-radius: 20px;} /* Red */
-.seaborn {width: 65%; background-color: #759fff; border-radius: 20px;} /* Green */
-.matplotlib {width: 70%; background-color: #ffffff; border-radius: 20px; color: black;} /* Dark Grey */
+/*Bars*/
+.python {width: 80%; background-color: #ffd343; border-radius: 20px;}
+.numpy {width: 60%; background-color: #0049b0; border-radius: 20px;} 
+.pandas {width: 65%; background-color: #0c004f; border-radius: 20px;} 
+.seaborn {width: 65%; background-color: #759fff; border-radius: 20px;} 
+.matplotlib {width: 70%; background-color: #ffffff; border-radius: 20px; color: black;} 
 .java {width: 80%; background-color: #f89820; border-radius: 20px;}
 .c {width: 50%; background-color: #659ad2; border-radius: 20px;}
 .web{width: 20%; background-color: #659ad2; border-radius: 20px;}
 .html{width: 70%; background-color: #ff7300; border-radius: 20px;}
 .css{width: 70%; background-color: #1400c8; border-radius: 20px;}
+.illustrator{width: 70%; background-color: #ff8000; border-radius: 20px;}
+.photoshop{width: 50%; background-color: #063fb2; border-radius: 20px;}
 
 #footer{
   background-color: white;
