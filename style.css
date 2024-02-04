@@ -18,7 +18,7 @@
   }
 }
 #intro{
-    height: 600px;
+    height: 650px;
 }
 .intro-eren{
     color: white;
@@ -26,7 +26,7 @@
     display: flex;
     align-items: center;
     font-family: 'Dancing Script', cursive;
-    text-shadow: 0 0 12px #1e00ff, 0 5px 12px #2600ff , 0 5px 12px #0d00ff;
+    text-shadow: 0 0 12px #2600ff, 0 5px 12px #2600ff , 0 5px 12px #0d00ff;
 }
 .flex{
     display: flex;
@@ -150,10 +150,11 @@
 .matplotlib {width: 70%; background-color: #ffffff; border-radius: 20px; color: black;} 
 .java {width: 80%; background-color: #f89820; border-radius: 20px;}
 .c {width: 50%; background-color: #659ad2; border-radius: 20px;}
-.web{width: 20%; background-color: #659ad2; border-radius: 20px;}
+.web{width: 50%; background-color: #659ad2; border-radius: 20px;}
 .html{width: 70%; background-color: #ff7300; border-radius: 20px;}
 .css{width: 70%; background-color: #1400c8; border-radius: 20px;}
-.illustrator{width: 70%; background-color: #ff8000; border-radius: 20px;}
+.js {width: 50%; background-color: #ffd500; border-radius: 20px;}
+.illustrator{ width: 70%; background-color: #ff8000; border-radius: 20px; -webkit-border-radius: 20px; -moz-border-radius: 20px; -ms-border-radius: 20px; -o-border-radius: 20px; }
 .photoshop{width: 50%; background-color: #063fb2; border-radius: 20px;}
 
 #footer{
