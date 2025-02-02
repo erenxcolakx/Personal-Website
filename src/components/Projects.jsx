@@ -1,7 +1,5 @@
 import '../App.css'
 import ProjectItem from './ProjectItem'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function Projects() {
   return (
@@ -59,6 +57,15 @@ function Projects() {
         frameType="framehorizontal"
       />
 
+      <ProjectItem
+        href="https://bweet.vercel.app"
+        imgSrc="../images/bweet.gif"
+        alt="bweet"
+        title="Bweet"
+        description="Full Stack Book Social Media App. Typescript - React - Bootstrap - Supabase(Postgres) - Google Auth - Vercel were used. Users can share posts, create private book reviews."
+        reverse={false}
+        frameType="framehorizontal"
+      />
     </section>
   );
 }

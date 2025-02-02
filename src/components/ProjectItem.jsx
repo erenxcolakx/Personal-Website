@@ -1,30 +1,31 @@
 import PropTypes from 'prop-types';
 
 function ProjectItem({ href, imgSrc, alt, title, description, reverse, frameType }) {
+  const isGif = imgSrc.toLowerCase().endsWith('.gif');
+  
   return (
-    <div className="container col-xxl-12 px-4 py-5 g-5">
-      <div
-        className={`row d-flex justify-content-lg-around justify-content-start align-items-center ${
-          reverse ? 'flex-lg-row-reverse' : 'flex-lg-row'
-        }`}
-      >
-        <div className={`${frameType} justify-content-center col-12 col-lg-6`} style={{ height: '300px' }}>
-            <a href={href}>
-              <img  src={imgSrc} className="img-fluid" alt={alt} />
-            </a>
+    <div className="container px-4 py-5 mx-auto">
+      <div className={`flex flex-col lg:flex-row ${reverse ? 'lg:flex-row-reverse' : ''} justify-around items-center`}>
+        <div className={`${
+          frameType === 'framehorizontal' ? 'w-[500px] h-[250px]' : 'w-[500px] h-[200px]'
+        } rounded-lg overflow-hidden relative group`}>
+          <a href={href}>
+            <img 
+              src={imgSrc} 
+              className={`w-full absolute top-0 left-0 ${
+                !isGif && 'transition-all duration-[3000ms] ease-in-out group-hover:-translate-y-[calc(100%-250px)]'
+              }`}
+              alt={alt} 
+              style={{ height: 'auto', minHeight: '100%' }}
+            />
+          </a>
         </div>
 
-        <div className="col-lg-5 pt-4">
-          <h1
-            className="display-5 fw-bold lh-1 mb-3 bebas-font"
-            style={{ color: 'white' }}
-          >
+        <div className="lg:w-5/12 pt-4">
+          <h1 className="text-4xl font-bold font-bebas text-white mb-3">
             {title}
           </h1>
-          <p
-            className="lead open-sans-font"
-            style={{ color: 'azure', fontSize: '1.5rem' }}
-          >
+          <p className="text-xl font-opensans text-gray-100">
             {description}
           </p>
         </div>
