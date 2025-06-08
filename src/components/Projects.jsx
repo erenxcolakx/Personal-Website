@@ -1,13 +1,26 @@
 import '../App.css'
 import ProjectItem from './ProjectItem'
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function Projects() {
+  const [titleRef, titleVisible] = useScrollAnimation(0.2);
   return (
     <section id="Projects" className="gradient-background">
-      <p className="center display-5 fw-bold pt-5 bebas-font" style={{ fontSize: '4rem', color: 'white' }}>Projects</p>
-      <p className="center fw-light open-sans-font" style={{ color: 'rgb(231, 231, 231)' }}>Click images to go to site.</p>
+      <p 
+        ref={titleRef}
+        className={`center display-5 fw-bold pt-5 bebas-font ${titleVisible ? 'animate-in' : 'animate-out'}`} 
+        style={{ fontSize: '4rem', color: 'white' }}
+      >
+        Projects
+      </p>
+      <p 
+        className={`center fw-light open-sans-font ${titleVisible ? 'animate-in' : 'animate-out'}`} 
+        style={{ color: 'rgb(231, 231, 231)', animationDelay: '0.2s' }}
+      >
+        Click images to go to site.
+      </p>
 
       <ProjectItem
         href="https://erenxcolakx.github.io/HTML-CSS-JS-Projects/WebDesignAgency_ResponsiveCSSProject/index.html"

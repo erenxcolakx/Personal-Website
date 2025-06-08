@@ -3,12 +3,13 @@ import FooterLink from './FooterLink';
 
 function Footer() {
   return (
-    <section id="footer">
-      <div className="container mx-auto text-center">
-        <div>
-          <p className="font-bebas text-5xl pt-4">Eren Çolak</p>
+    <section id="footer" className="modern-footer">
+      <div className="container mx-auto text-center footer-content">
+        <div className="footer-name-container">
+          <h2 className="footer-name">Eren Çolak</h2>
+          <div className="footer-tagline">Full Stack Developer & AI Enthusiast</div>
         </div>
-        <div className="flex justify-center gap-20 mt-8">
+        <div className="footer-links">
           <FooterLink
             href="https://www.linkedin.com/in/erenncolak/"
             imgSrc="../images/linkedin.png"
@@ -29,6 +30,9 @@ function Footer() {
             imgSrc="../images/github.png"
             alt="github"
           />
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; 2024 Eren Çolak. Built with passion and modern web technologies.</p>
         </div>
       </div>
     </section>

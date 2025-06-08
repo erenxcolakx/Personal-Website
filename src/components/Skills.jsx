@@ -1,5 +1,6 @@
 import '../App.css'
 import SkillItem from './SkillItem.jsx';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 const skills = [
   { imgSrc: '../images/python.png', alt: 'python', name: 'Python' },
   { imgSrc: '../images/numpy.png', alt: 'numpy', name: 'Numpy' },
@@ -23,19 +24,30 @@ const skills = [
 ];
 
 function Skills() {
+  const [titleRef, titleVisible] = useScrollAnimation(0.2);
+  const [skillsRef, skillsVisible] = useScrollAnimation(0.1);
+
   return (
     <div className="container mx-auto px-4 py-20">
       <div className="text-center">
-        <p className="text-6xl font-bebas text-white mb-20">
+        <p 
+          ref={titleRef}
+          className={`text-6xl font-bebas text-white mb-20 ${titleVisible ? 'animate-in' : 'animate-out'}`}
+        >
           Skills
         </p>
-        <div className="flex flex-wrap justify-center gap-10">
+        <div 
+          ref={skillsRef}
+          className={`flex flex-wrap justify-center gap-10 ${skillsVisible ? 'animate-in' : 'animate-out'}`}
+        >
           {skills.map((skill, index) => (
             <SkillItem
               key={index}
               imgSrc={skill.imgSrc}
               alt={skill.alt}
               name={skill.name}
+              index={index}
+              isVisible={skillsVisible}
             />
           ))}
         </div>

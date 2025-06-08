@@ -1,20 +1,35 @@
 import '../App.css'
-
+import useScrollAnimation from '../hooks/useScrollAnimation';
 
 function Bio() {
+  const [profileRef, profileVisible] = useScrollAnimation(0.2);
+  const [titleRef, titleVisible] = useScrollAnimation(0.3);
+  const [contentRef, contentVisible] = useScrollAnimation(0.2);
   return (
-    <section id="bio">
+    <section id="bio" className="bio-section">
       <div className="container mx-auto px-4 py-20 my-20 text-center">
-        <img
-          className="mx-auto mb-16 rounded-full w-[200px] h-[200px]"
-          src="../images/Me.jpg"
-          alt="Eren Çolak"
-        />
-        <p className="font-bebas text-6xl text-white mt-20">
+        <div 
+          ref={profileRef}
+          className={`profile-image-container ${profileVisible ? 'animate-in' : 'animate-out'}`}
+        >
+          <img
+            className="profile-image"
+            src="../images/Me.jpg"
+            alt="Eren Çolak"
+          />
+          <div className="profile-ring"></div>
+        </div>
+        <h2 
+          ref={titleRef}
+          className={`bio-title ${titleVisible ? 'animate-in' : 'animate-out'}`}
+        >
           Who am I ?
-        </p>
-        <div className="max-w-4xl mx-auto">
-          <p className="text-2xl font-opensans text-white my-20">
+        </h2>
+        <div 
+          ref={contentRef}
+          className={`bio-content ${contentVisible ? 'animate-in' : 'animate-out'}`}
+        >
+          <p className="bio-text">
             I was born in Bandırma district of Balıkesir in 2003. I have been
             using computers since I started primary school. I have been keen on
             astronomy since middle school also interested in photography &
@@ -22,9 +37,9 @@ function Bio() {
             School. I have interested in Software Development since the summer
             before university. I have been studying at Marmara University since
             2021 and I am developing myself in the field of{' '}
-            <span className="text-[rgb(135,61,255)]">Web Development</span>{' '}
+            <span className="highlight-text">Web Development</span>{' '}
             and{' '}
-            <span className="text-[rgb(135,61,255)]">AI.</span>
+            <span className="highlight-text">AI.</span>
           </p>
         </div>
       </div>
