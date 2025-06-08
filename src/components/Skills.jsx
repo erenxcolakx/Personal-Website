@@ -11,6 +11,7 @@ const skills = [
   { imgSrc: '../images/js.png', alt: 'javascript', name: 'Javascript' },
   { imgSrc: '../images/html.png', alt: 'html5', name: 'HTML5' },
   { imgSrc: '../images/css.png', alt: 'css3', name: 'CSS3' },
+  { imgSrc: '../images/tailwind.png', alt: 'tailwind', name: 'Tailwind' },
   { imgSrc: '../images/bootstrap.png', alt: 'bootstrap', name: 'Bootstrap' },
   { imgSrc: '../images/jquery.png', alt: 'jquery', name: 'jQuery' },
   { imgSrc: '../images/node.png', alt: 'node.js', name: 'Node.js' },
@@ -23,20 +24,15 @@ const skills = [
 
 function Skills() {
   return (
-    <section id="skills">
-      <div className="d-flex justify-content-center px-4 py-5">
-        <p
-          className="center display-5 fw-bold bebas-font"
-          style={{ fontSize: '4rem', color: 'white' }}
-        >
-          Tech Stack
+    <div className="container mx-auto px-4 py-20">
+      <div className="text-center">
+        <p className="text-6xl font-bebas text-white mb-20">
+          Skills
         </p>
-      </div>
-      <div className="container mb-5">
-        <div className="d-flex flex-wrap gap-5 gap-lg-0 justify-content-evenly align-items-center">
-          {skills.map((skill) => (
+        <div className="flex flex-wrap justify-center gap-10">
+          {skills.map((skill, index) => (
             <SkillItem
-              key={skill.name}
+              key={index}
               imgSrc={skill.imgSrc}
               alt={skill.alt}
               name={skill.name}
@@ -44,7 +40,7 @@ function Skills() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

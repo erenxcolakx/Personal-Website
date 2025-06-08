@@ -4,14 +4,11 @@ import EducationItem from './EducationItem';
 function Education() {
   return (
     <section className="gradient-background">
-      <div className="container px-4 py-5" id="edu">
-        <p
-          className="center display-5 fw-bold bebas-font"
-          style={{ fontSize: '4rem', color: 'white' }}
-        >
+      <div className="container mx-auto px-4 py-20" id="edu">
+        <p className="text-center text-6xl font-bebas text-white">
           Education
         </p>
-        <div className="row mt-3 p-5 row-cols-1 row-cols-lg-2 gap-5">
+        <div className="mt-12 p-20 grid grid-cols-1 lg:grid-cols-2 gap-20">
           <EducationItem
             imgSrc="../images/bal.png"
             imgAlt="Bandırma Anatolian Logo"

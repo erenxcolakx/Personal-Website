@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 
 function EducationItem({ imgSrc, imgAlt, title }) {
   return (
-    <div className="row d-flex">
-      <div className="d-flex align-items-center justify-content-center fs-4">
-        <img src={imgSrc} alt={imgAlt} width="108" />
+    <div className="flex flex-col">
+      <div className="flex items-center justify-center text-xl">
+        <img src={imgSrc} alt={imgAlt} className="w-[108px]" />
       </div>
-      <div className="center p-3">
-        <h3 className="fs-2" style={{ color: 'white' }}>
+      <div className="text-center p-3">
+        <h3 className="text-2xl text-white">
           {title}
         </h3>
       </div>

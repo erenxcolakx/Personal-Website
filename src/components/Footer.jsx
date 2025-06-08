@@ -4,13 +4,11 @@ import FooterLink from './FooterLink';
 function Footer() {
   return (
     <section id="footer">
-      <div className="container text-center">
-        <div className="row">
-          <div className="col">
-            <p className="namefooter mt-4 bebas-font">Eren Çolak</p>
-          </div>
+      <div className="container mx-auto text-center">
+        <div>
+          <p className="font-bebas text-5xl pt-4">Eren Çolak</p>
         </div>
-        <div className="row row-cols-auto gx-5 justify-content-center">
+        <div className="flex justify-center gap-20 mt-8">
           <FooterLink
             href="https://www.linkedin.com/in/erenncolak/"
             imgSrc="../images/linkedin.png"
