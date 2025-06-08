@@ -2,11 +2,12 @@ import PropTypes from 'prop-types';
 
 function ProjectItem({ href, imgSrc, alt, title, description, reverse, frameType }) {
   return (
-    <div className="container col-xxl-12 px-4 py-5 g-5">
+    <div className="container-fluid col-xxl-12 px-4 py-5">
       <div
-        className={`row d-flex justify-content-lg-around justify-content-start align-items-center ${
+        className={`row d-flex justify-content-lg-around justify-content-center align-items-center ${
           reverse ? 'flex-lg-row-reverse' : 'flex-lg-row'
         }`}
+        style={{ margin: 0, width: '100%' }}
       >
         <div className={`${frameType} justify-content-center col-12 col-lg-6`} style={{ height: '300px' }}>
             <a href={href}>

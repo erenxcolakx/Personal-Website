@@ -17,6 +17,7 @@ const skills = [
   { imgSrc: '../images/express.png', alt: 'express.js', name: 'Express.js' },
   { imgSrc: '../images/postgresql.png', alt: 'postgresql', name: 'PostgreSQL' },
   { imgSrc: '../images/react.webp', alt: 'react', name: 'React.js' },
+  { imgSrc: '../images/nextjs.png', alt: 'nextjs', name: 'Next.js' },
   { imgSrc: '../images/docker.webp', alt: 'docker', name: 'Docker' },
 ];
 

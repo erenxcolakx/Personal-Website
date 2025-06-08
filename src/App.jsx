@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 function App() {
     return (
-      <div style={{ backgroundColor: 'black' }}>
+      <div style={{ backgroundColor: 'black', width: '100%', overflowX: 'hidden' }}>
         <Header />
         <Bio />
         <Education />

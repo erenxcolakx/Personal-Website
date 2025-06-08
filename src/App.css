@@ -1,8 +1,20 @@
-.gradient-background {
+* {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .gradient-background {
     background: linear-gradient(300deg, #000000, #000d9f, #7b00df);
     background-size: 180% 180%;
     animation: gradient-animation 8s ease infinite ;
-    width: auto;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   @keyframes gradient-animation {
@@ -53,8 +65,10 @@
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-around;
-      width: auto;
+      width: 100%;
+      max-width: 100%;
       height: auto;
+      overflow-x: hidden;
   }
   .skill-card{
       height: auto;
@@ -78,7 +92,8 @@
   }
   .framehorizontal {
     border-radius: 10px;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     height: 250px;
     overflow: hidden;
     position: relative;
@@ -91,14 +106,17 @@
     -moz-transition: transform 5s ease;
     -ms-transition: transform 5s ease;
     -o-transition: transform 5s ease;
-}
+  }
+  
   .framevertical {
     border-radius: 10px;
-    width: 500px; /* Frame width */
+    width: 100%;
+    max-width: 500px; /* Frame max width */
     height: 200px; /* Frame height */
     overflow: hidden; /* Hidden bleed setting to cut out the picture that carries the content */
     position: relative;/* We will scroll content by adjusting the position */
   }
+  
   .framevertical img {
     top: 0;
     transition: transform 5s ease; /* Soft passing animation*/
@@ -111,7 +129,65 @@
     -moz-transform: translateY(-75%);
     -ms-transform: translateY(-75%);
     -o-transform: translateY(-75%);
-}
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .framehorizontal {
+      max-width: 100%;
+      width: 100%;
+      height: 200px;
+    }
+    
+    .framevertical {
+      max-width: 100%;
+      width: 100%;
+      height: 180px;
+    }
+    
+    .intro-eren {
+      font-size: 3rem;
+    }
+    
+    .card-container {
+      padding: 0 10px;
+    }
+    
+    .frame-skills {
+      width: 100%;
+      max-width: 280px;
+      margin: 10px auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .framehorizontal {
+      max-width: 100%;
+      width: 100%;
+      height: 180px;
+    }
+    
+    .framevertical {
+      max-width: 100%;
+      width: 100%;
+      height: 160px;
+    }
+    
+    .intro-eren {
+      font-size: 2.5rem;
+    }
+    
+    .frame-skills {
+      width: 100%;
+      max-width: 250px;
+      margin: 5px auto;
+    }
+    
+    .container-fluid {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+  }
   .framework {
     height: 20px;
     padding-bottom: 25px;

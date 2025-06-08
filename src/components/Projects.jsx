@@ -59,6 +59,36 @@ function Projects() {
         frameType="framehorizontal"
       />
 
+      <ProjectItem
+        href="https://bweet.vercel.app"
+        imgSrc="../images/bweet.png"
+        alt="Bweet App"
+        title="Bweet - Book Tracking Platform"
+        description="A comprehensive book tracking application where users can create personal book lists, get reading recommendations, and share book reviews with the community. Built with modern web technologies for seamless book discovery experience."
+        reverse={false}
+        frameType="framevertical"
+      />
+
+      <ProjectItem
+        href="https://dreamerapp.vercel.app"
+        imgSrc="../images/dreamer.png"
+        alt="Dreamer App"
+        title="DreamerApp - AI Dream Interpreter"
+        description="An innovative AI-powered application that interprets your dreams with artificial intelligence and discovers the messages of your subconscious. Tell your dreams and get intelligent interpretations through advanced AI technology."
+        reverse={true}
+        frameType="framehorizontal"
+      />
+
+      <ProjectItem
+        href="https://smart-test-ai.vercel.app"
+        imgSrc="../images/smarttestai.png"
+        alt="Smart Test AI"
+        title="Smart Test AI - Intelligent Quiz Creator"
+        description="An intelligent quiz creation platform that makes learning more effective with modern artificial intelligence technology. Transform your documents into interactive quizzes in seconds and accelerate your learning experience."
+        reverse={false}
+        frameType="framevertical"
+      />
+
     </section>
   );
 }
