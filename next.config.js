@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: 'export', // Commented out for development
-  // trailingSlash: true,
+  output: 'export',
+  // trailingSlash: false keeps canonical URLs clean
   images: {
-    // unoptimized: true, // Commented out for development
+    unoptimized: true,
     domains: ['localhost'],
     formats: ['image/webp', 'image/avif'],
   },

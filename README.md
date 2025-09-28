@@ -52,6 +52,29 @@ A modern, responsive portfolio website built with Next.js, featuring Huge Inc. i
 - **Smooth Transitions** - Fluid animations throughout
 - **Minimal Color Palette** - Clean black, white, and gray tones
 
+### Deployment (Vercel Static Export)
+
+This project is configured for static export using `next export`.
+
+Build & preview locally:
+
+```
+npm install
+npm run export
+npm run serve
+```
+
+Vercel settings:
+- Build Command: `npm run export`
+- Output Directory: `out`
+- Install Command: `npm install`
+
+Alternatively (already included) the root `vercel.json` defines these.
+
+Limitations of static export:
+- No server-side rendering / dynamic API routes
+- Any `fetch('/api/...')` calls must be removed or replaced with static data
+
 ### Components
 - **Hero Section** - Eye-catching landing with animated elements
 - **Navigation** - Responsive navigation with active states

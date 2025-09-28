@@ -28,30 +28,11 @@ export function StatsBar() {
   const [stats, setStats] = useState<StatItem[]>(fallbackStats)
   const [error, setError] = useState<string | null>(null)
 
+  // Static export mode: remove runtime API call (no /api route available in out/)
   useEffect(() => {
-    let cancelled = false
-    async function load() {
-      try {
-        const res = await fetch('/api/github-stats', { next: { revalidate: 1800 } })
-        if (!res.ok) throw new Error('Request failed')
-        const json = await res.json()
-        if (!json.ok) throw new Error(json.error || 'API error')
-        if (cancelled) return
-        const dynamic: StatItem[] = [
-          { key: 'projects', label: 'Projects', value: 24, suffix: '+' },
-          { key: 'experience', label: 'Years Experience', value: 3, suffix: 'y' },
-          { key: 'repos', label: 'Open Source Repos', value: json.publicRepos ?? 0 },
-          { key: 'followers', label: 'GitHub Followers', value: json.followers ?? 0, suffix: '+' },
-        ]
-        setStats(dynamic)
-      } catch (e: any) {
-        if (!cancelled) setError(e.message)
-      } finally {
-        if (!cancelled) setLoading(false)
-      }
-    }
-    load()
-    return () => { cancelled = true }
+    // Provide immediate static data (simulate loaded state)
+    setStats(fallbackStats)
+    setLoading(false)
   }, [])
 
   return (
