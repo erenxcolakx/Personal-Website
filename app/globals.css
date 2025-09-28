@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-jetbrains-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  /* Simplified solid background to avoid double-layer look behind dark hero */
+  background: rgb(var(--background-start-rgb));
+  /* Optional subtle noise overlay hook (disabled by default)
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+  background-size: 32px 32px; */
+}
+
+@layer base {
+  :root {
+    --background-start-rgb: 255, 255, 255;
+    --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
+    --primary-50: 239 246 255;
+    --primary-100: 219 234 254;
+    --primary-200: 191 219 254;
+    --primary-300: 147 197 253;
+    --primary-400: 96 165 250;
+    --primary-500: 59 130 246;
+    --primary-600: 37 99 235;
+    --primary-700: 29 78 216;
+    --primary-800: 30 64 175;
+    --primary-900: 30 58 138;
+  }
+
+  [data-theme='dark'] {
+    --background-start-rgb: 15, 23, 42;
+    --background-end-rgb: 15, 23, 42;
+    --foreground-rgb: 255, 255, 255;
+    --primary-50: 30 58 138;
+    --primary-100: 30 64 175;
+    --primary-200: 29 78 216;
+    --primary-300: 37 99 235;
+    --primary-400: 59 130 246;
+    --primary-500: 96 165 250;
+    --primary-600: 147 197 253;
+    --primary-700: 191 219 254;
+    --primary-800: 219 234 254;
+    --primary-900: 239 246 255;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/10 dark:bg-black/10 border border-white/20 dark:border-white/10;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent;
+  }
+  
+  .theme-transition {
+    @apply transition-colors duration-300 ease-in-out;
+  }
+  
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 lg:py-24;
+  }
+  
+  .container-width {
+    @apply max-w-7xl mx-auto;
+  }
+}/* 
+Huge Inc. Inspired Styles */
+@layer utilities {
+  .text-huge {
+    font-size: clamp(3rem, 8vw, 12rem);
+    line-height: 0.9;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+  
+  .magnetic-hover {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .magnetic-hover:hover {
+    transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+  }
+  
+  .parallax-text {
+    will-change: transform;
+  }
+  
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .huge-grid {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  .huge-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .huge-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .huge-button:hover::before {
+    left: 100%;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Dark mode scrollbar */
+[data-theme='dark'] ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Selection styles */
+::selection {
+  background-color: rgba(59, 130, 246, 0.3);
+  color: inherit;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
