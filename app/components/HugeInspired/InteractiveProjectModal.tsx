@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ExternalLink, Loader } from 'lucide-react'
 
@@ -36,25 +36,28 @@ export function InteractiveProjectModal({
 }: InteractiveProjectModalProps) {
   const [iframeLoading, setIframeLoading] = useState(true)
   const [iframeError, setIframeError] = useState(false)
-  const [loadingTimeout, setLoadingTimeout] = useState<NodeJS.Timeout | null>(null)
+  // Use ref for timeout to avoid stale closure & dependency noise
+  const loadingTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     if (isOpen && project.iframeUrl) {
       setIframeLoading(true)
       setIframeError(false)
-      
-      // Set timeout for iframe loading
-      const timeout = setTimeout(() => {
+      if (loadingTimeoutRef.current) clearTimeout(loadingTimeoutRef.current)
+      loadingTimeoutRef.current = setTimeout(() => {
         setIframeLoading(false)
         setIframeError(true)
-      }, 10000) // 10 second timeout
-      
-      setLoadingTimeout(timeout)
+      }, 10000) // 10s timeout
+    } else {
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current)
+        loadingTimeoutRef.current = null
+      }
     }
-
     return () => {
-      if (loadingTimeout) {
-        clearTimeout(loadingTimeout)
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current)
+        loadingTimeoutRef.current = null
       }
     }
   }, [isOpen, project.iframeUrl])
@@ -62,33 +65,25 @@ export function InteractiveProjectModal({
   const handleIframeLoad = () => {
     setIframeLoading(false)
     setIframeError(false)
-    if (loadingTimeout) {
-      clearTimeout(loadingTimeout)
-    }
+    if (loadingTimeoutRef.current) clearTimeout(loadingTimeoutRef.current)
   }
 
   const handleIframeError = () => {
     setIframeLoading(false)
     setIframeError(true)
-    if (loadingTimeout) {
-      clearTimeout(loadingTimeout)
-    }
+    if (loadingTimeoutRef.current) clearTimeout(loadingTimeoutRef.current)
   }
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIframeLoading(true)
     setIframeError(false)
-    if (loadingTimeout) {
-      clearTimeout(loadingTimeout)
-    }
+    if (loadingTimeoutRef.current) clearTimeout(loadingTimeoutRef.current)
     onClose()
-  }
+  }, [onClose])
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      handleClose()
-    }
-  }
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') handleClose()
+  }, [handleClose])
 
   useEffect(() => {
     if (isOpen) {
@@ -98,12 +93,11 @@ export function InteractiveProjectModal({
       document.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'unset'
     }
-
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'unset'
     }
-  }, [isOpen])
+  }, [isOpen, handleKeyDown])
 
   return (
     <AnimatePresence>
