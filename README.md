@@ -54,26 +54,25 @@ A modern, responsive portfolio website built with Next.js, featuring Huge Inc. i
 
 ### Deployment (Vercel Static Export)
 
-This project is configured for static export using `next export`.
+Bu proje Next.js 15 `output: 'export'` konfigürasyonu ile ekstra `next export` adımı olmadan direkt statik çıktıyı üretir.
 
-Build & preview locally:
+Lokal build & önizleme:
 
 ```
 npm install
-npm run export
+npm run build
 npm run serve
 ```
 
-Vercel settings:
-- Build Command: `npm run export`
+Vercel ayarları:
+- Build Command: `npm run build`
 - Output Directory: `out`
 - Install Command: `npm install`
 
-Alternatively (already included) the root `vercel.json` defines these.
-
-Limitations of static export:
-- No server-side rendering / dynamic API routes
-- Any `fetch('/api/...')` calls must be removed or replaced with static data
+Notlar:
+- `next export` komutu artık kullanım dışı (deprecation mesajını çözdük)
+- `app/api/*` route'ları kaldırıldı; tamamen statik
+- Herhangi bir runtime fetch yok; tüm veriler build-time / statik
 
 ### Components
 - **Hero Section** - Eye-catching landing with animated elements
@@ -112,14 +111,14 @@ npm run dev
 
 ### Static Export (SSG)
 ```bash
-# Build and export static files
+# Statik build üretir (out/ klasörü)
 npm run build
 
-# Serve static files locally
+# Statik çıktıyı lokal sun
 npm run serve
 ```
 
-The static files will be generated in the `out/` directory.
+Statik dosyalar `out/` klasöründe yer alır. `npm run clean` ile `.next` ve `out` temizlenebilir.
 
 ### Deployment Options
 - **Vercel** - Automatic deployment from GitHub

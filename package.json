@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next build && next export",
+    "export": "next build",
     "clean": "node -e \"const fs=require('fs'),p=['.next','out'];p.forEach(d=>fs.rmSync(d,{recursive:true,force:true}));console.log('Cleaned .next and out');\"",
     "serve": "npx serve@latest out"
   },
