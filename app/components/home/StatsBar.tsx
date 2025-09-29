@@ -15,8 +15,8 @@ interface StatItem {
 }
 
 const fallbackStats: StatItem[] = [
-  { key: 'projects', label: 'Projects', value: 24, suffix: '+' },
-  { key: 'experience', label: 'Years Experience', value: 3, suffix: 'y' },
+  { key: 'projects', label: 'Projects', value: 12, suffix: '+' },
+  { key: 'experience', label: 'Years Experience', value: 1, suffix: 'y' },
   { key: 'repos', label: 'Open Source Repos', value: 18, suffix: '+' },
   { key: 'builds', label: 'Active Builds', value: 4 },
 ]
@@ -36,7 +36,7 @@ export function StatsBar() {
   }, [])
 
   return (
-  <section className="w-full text-black dark:text-white pt-16 md:pt-20">
+  <section className="w-full text-white pt-16 md:pt-20">
       <div ref={ref} className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           {stats.map((s, i) => (

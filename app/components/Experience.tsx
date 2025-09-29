@@ -213,17 +213,88 @@ export function Experience() {
             >
               <h3 className="text-2xl font-semibold tracking-tight mb-6">Certifications</h3>
               <div className="space-y-4">
-                {[{ name: 'JavaScript Algorithms and Data Structures', issuer: 'freeCodeCamp', year: '2023' },{ name: 'Responsive Web Design', issuer: 'freeCodeCamp', year: '2022' },{ name: 'React Development', issuer: 'Online Course', year: '2023' },{ name: 'Node.js Development', issuer: 'Online Course', year: '2023' }].map((cert, i) => (
+                {[
+                  {
+                    title: 'Docker & Kubernetes: The Practical Guide',
+                    provider: 'Udemy',
+                    date: 'Aug 2024',
+                    credentialId: 'UC-760127d4-f382-4b52-b333-9c3d75c3611',
+                    skills: ['Docker','Kubernetes','AWS'],
+                    file: 'Docker&Kubernetes.pdf'
+                  },
+                  {
+                    title: 'The Complete 2024 Web Development Bootcamp',
+                    provider: 'Udemy',
+                    date: 'Apr 2024',
+                    credentialId: 'UC-3d29c5a9-913e-41b3-be69-92bbaba31285',
+                    skills: ['HTML5','CSS','Bootstrap','JavaScript','jQuery','Node.js','Express.js','PostgreSQL','React.js'],
+                    file: 'The Complete 2024 Web Development Bootcamp.pdf'
+                  },
+                  {
+                    title: 'PostgreSQL Veritabanı Programlama',
+                    provider: 'Udemy',
+                    date: 'Mar 2024',
+                    credentialId: 'UC-f12e27d7-8bab-463c-aacf-1a485fd86a2c',
+                    skills: ['PostgreSQL','SQL'],
+                    file: 'PostgreSQL.pdf'
+                  },
+                  {
+                    title: 'Introduction to Machine Learning',
+                    provider: 'Global AI Hub',
+                    date: 'Oct 2023',
+                    credentialId: 'eyJ1c2VyLWlkIjoxNDg2MDgsImNvdXJzZS1pZCI6MTE0NDY1LCJjZXJ0LWlkIjoiMTE0Njk3In0=',
+                    skills: ['Machine Learning','Artificial Intelligence']
+                  },
+                  {
+                    title: 'Bootstrap 5',
+                    provider: 'BTK Akademi',
+                    date: 'Sep 2023',
+                    credentialId: '2Nwc0EqlMK',
+                    skills: ['CSS','Bootstrap']
+                  },
+                  {
+                    title: 'Staj Programı - Python',
+                    provider: 'Patika.dev',
+                    date: 'Dec 2022',
+                    credentialId: '-',
+                    skills: ['Git','Python']
+                  },
+                  {
+                    title: 'Versiyon Kontrolleri: Git ve GitHub Katılım Sertifikası',
+                    provider: 'BTK Akademi',
+                    date: 'Sep 2022',
+                    credentialId: 'eK1hyLpGW',
+                    skills: ['Git']
+                  }
+                ].map((cert, i) => (
                   <motion.div
-                    key={cert.name + i}
+                    key={cert.title + i}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.4 }}
                     transition={{ duration: 0.5, delay: i * 0.05 }}
-                    className="rounded-xl p-4 bg-white/60 dark:bg-neutral-900/60 backdrop-blur border border-black/10 dark:border-white/10 text-sm flex flex-col gap-1 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.25)] transition"
+                    className="rounded-xl p-5 bg-white/60 dark:bg-neutral-900/60 backdrop-blur border border-black/10 dark:border-white/10 text-sm flex flex-col gap-2 hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.25)] transition"
                   >
-                    <h4 className="font-medium tracking-tight">{cert.name}</h4>
-                    <p className="text-xs text-gray-600 dark:text-gray-400">{cert.issuer} • {cert.year}</p>
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                      <div>
+                        <h4 className="font-medium tracking-tight mb-0.5">{cert.title}</h4>
+                        <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">{cert.provider}</p>
+                      </div>
+                      <div className="flex flex-col items-start sm:items-end text-[10px] md:text-xs text-gray-600 dark:text-gray-400 gap-0.5">
+                        <span>{cert.date}</span>
+                        {/* Credential ID removed per request */}
+                      </div>
+                    </div>
+                    {cert.skills && (
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {cert.skills.map(s => (
+                          <span key={s} className="px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[10px] md:text-[11px] text-gray-700 dark:text-gray-300">
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    {/* View Certificate link removed per request */}
                   </motion.div>
                 ))}
               </div>

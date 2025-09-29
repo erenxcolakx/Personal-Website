@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { useTheme } from './ThemeProvider'
 import { Moon, Sun, Menu, X } from 'lucide-react'
 import Link from 'next/link'
@@ -39,21 +40,33 @@ export function Navigation() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div className="flex items-center h-20">
-          {/* Logo (hidden on mobile) */}
-          <motion.div 
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+  <div className="flex items-center h-20 relative">
+          {/* Desktop-only logo using favicon */}
+          <motion.div
             className="flex-shrink-0 hidden md:block"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
+            whileHover={{ scale: 1.04 }}
+            transition={{ duration: 0.25 }}
           >
-            <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-purple-600 hover:to-blue-600 transition-all duration-300">
-              EC
+            <Link
+              href="/"
+              aria-label="Home"
+              className="group relative inline-flex items-center justify-center w-12 h-12"
+            >
+              <span className="absolute -inset-2 rounded-xl bg-gradient-to-br from-blue-600/0 via-purple-600/0 to-fuchsia-600/0 group-hover:from-blue-600/20 group-hover:via-purple-600/20 group-hover:to-fuchsia-600/20 transition-colors duration-500" />
+              <Image
+                src="/favicon.svg"
+                alt="Eren Colak logo"
+                width={44}
+                height={44}
+                priority
+                className="relative w-11 h-11 drop-shadow-sm group-hover:drop-shadow-[0_0_8px_rgba(99,102,241,0.55)] transition-all duration-300"
+              />
             </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1 mx-auto">
+          <div className="hidden md:flex items-center space-x-1 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -84,7 +97,7 @@ export function Navigation() {
           </div>
 
           {/* Right Side Actions (always pushed to right on mobile) */}
-          <div className="flex items-center space-x-3 ml-auto">
+          <div className="flex items-center space-x-3 ml-auto relative z-10">
             {/* Theme Toggle */}
             <motion.button
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}

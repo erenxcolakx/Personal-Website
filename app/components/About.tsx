@@ -159,10 +159,7 @@ export function About() {
                   transition={{ duration: 0.6, delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  Hi! I&apos;m a passionate <span className="font-semibold text-blue-600 dark:text-blue-400">Full-Stack Developer</span> and
-                  <span className="font-semibold text-purple-600 dark:text-purple-400"> Data Science enthusiast</span> currently pursuing my degree at
-                  <span className="font-semibold text-gray-900 dark:text-white"> Marmara University</span>.
-                  My journey in tech started with curiosity and has evolved into a deep passion for creating innovative solutions.
+                  I’m a <span className="font-semibold text-blue-600 dark:text-blue-400">Full‑Stack Developer</span> and data‑focused engineer studying Computer Engineering at <span className="font-semibold text-gray-900 dark:text-white">Marmara University</span>. I combine product thinking with disciplined engineering: clear domain boundaries, type‑safe flows and measurable performance budgets over trend‑driven complexity.
                 </motion.p>
 
                 <motion.p
@@ -171,9 +168,7 @@ export function About() {
                   transition={{ duration: 0.6, delay: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  I specialize in building <span className="font-semibold text-green-600 dark:text-green-400">modern web applications</span> using
-                  React, Next.js, and Node.js, while also diving deep into data analysis with Python.
-                  My experience ranges from creating responsive user interfaces to developing robust backend systems and analyzing complex datasets.
+                  Projects like <span className="font-semibold text-purple-600 dark:text-purple-400">DeepSport</span> (real‑time sports analytics), <span className="font-semibold text-emerald-600 dark:text-emerald-400">Hiversion</span> (modular SaaS) and <span className="font-semibold text-pink-600 dark:text-pink-400">Smart Test AI</span> (LLM‑assisted test generation) allowed me to design aggregation & caching layers, build evaluation & prompt refinement loops, and ship resilient UI + API integrations with Next.js, Node.js, PostgreSQL and modern frontend tooling. <span className="block mt-4 text-base text-gray-600 dark:text-gray-400">I also completed an intensive OpenAI-focused course building 8 projects: intelligent completion, streaming responses, PDF summarization & chat, text similarity, personalized book recommendations (embeddings & 2D maps), real-time weather querying and conversational persona experiences.</span>
                 </motion.p>
 
                 <motion.p
@@ -182,9 +177,7 @@ export function About() {
                   transition={{ duration: 0.6, delay: 0.7 }}
                   viewport={{ once: true }}
                 >
-                  When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to open-source projects,
-                  or sharing my knowledge with the developer community. I believe in continuous learning and staying updated
-                  with the latest industry trends and best practices.
+                  I focus on clarity, observability and sustainable scaling: progressive extraction over premature microservices, guarded AI pipelines, Core Web Vitals discipline and reviewable, type‑safe collaboration. I keep learning, documenting decisions and contributing back when meaningful.
                 </motion.p>
               </div>
 
@@ -196,7 +189,7 @@ export function About() {
                 viewport={{ once: true }}
                 className="flex flex-wrap gap-3 pt-6"
               >
-                {['Problem Solver', 'Team Player', 'Quick Learner', 'Creative Thinker'].map((trait, index) => (
+                {['Domain Driven', 'Performance Minded', 'Type Safe', 'Observability Focused'].map((trait, index) => (
                   <motion.span
                     key={trait}
                     className="px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium border border-blue-200 dark:border-blue-700"

@@ -6,7 +6,6 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
 
 export function Hero() {
-  const [mounted, setMounted] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -19,17 +18,12 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
   useEffect(() => {
-    setMounted(true)
-
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
-
     window.addEventListener('mousemove', updateMousePosition)
     return () => window.removeEventListener('mousemove', updateMousePosition)
   }, [])
-
-  if (!mounted) return null
 
   return (
     <motion.section
@@ -58,8 +52,7 @@ export function Hero() {
       />
 
       {/* Floating Elements */}
-      {mounted && (
-        <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none">
           {Array.from({ length: 3 }).map((_, i) => (
             <motion.div
               key={i}
@@ -79,8 +72,7 @@ export function Hero() {
               }}
             />
           ))}
-        </div>
-      )}
+      </div>
 
       <div className="container mx-auto px-6 py-20 relative z-10">
         <motion.div

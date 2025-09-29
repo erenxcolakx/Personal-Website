@@ -14,13 +14,13 @@ Bu doküman; portföy siten (Next.js statik export) için maksimum SEO, performa
 ## 1. Temel Teknik SEO (P0)
 | Görev | Öncelik | Açıklama | Kabul Kriteri |
 |-------|---------|----------|---------------|
-| [ ] Sayfa başlıkları benzersiz | P0 | Her route için özgün `<title>` (Home, About, Projects, Skills, Experience, Contact) | Her sayfa kaynakta farklı `<title>` gösteriyor; SERP kesilmiyor (< 60 karakter) |
-| [ ] Meta description ekle | P0 | 140–160 karakter; eylem/öz tanımı | Lighthouse SEO bölümünde "Missing meta description" uyarısı yok |
-| [ ] Canonical etiket | P0 | `https://erencolak.com/route` formatı | Kaynakta `<link rel="canonical" ...>` mevcut; tekil index |
-| [ ] Robots kontrol | P0 | `robots.ts` çıktısı: indexlenebilir sayfalar | `/robots.txt` içeriği doğrulandı; istenmeyen noindex yok |
-| [ ] Sitemap güncel | P0 | Tüm public route'lar listede | `sitemap.xml` her deploy sonrası güncel |
-| [ ] 404 sayfası CTA | P0 | Geri dönüş linki (Home / Projects) | 404 açıldığında yönlendirme linkleri var |
-| [ ] HTML lang & charset | P0 | `<html lang="en">`, `<meta charset="utf-8">` | Mevcut ve valide |
+| [x] Sayfa başlıkları benzersiz | P0 | Her route için özgün `<title>` (Home, About, Projects, Skills, Experience, Contact) | Her sayfa kaynakta farklı `<title>` gösteriyor; SERP kesilmiyor (< 60 karakter) |
+| [x] Meta description ekle | P0 | 140–160 karakter; eylem/öz tanımı | Lighthouse SEO bölümünde "Missing meta description" uyarısı yok |
+| [x] Canonical etiket | P0 | `https://erencolak.com/route` formatı | Kaynakta `<link rel="canonical" ...>` mevcut; tekil index |
+| [x] Robots kontrol | P0 | `robots.ts` çıktısı: indexlenebilir sayfalar | `/robots.txt` içeriği doğrulandı; istenmeyen noindex yok |
+| [x] Sitemap güncel | P0 | Tüm public route'lar listede | `sitemap.xml` her deploy sonrası güncel |
+| [x] 404 sayfası CTA | P0 | Geri dönüş linki (Home / Projects) | 404 açıldığında yönlendirme linkleri var |
+| [x] HTML lang & charset | P0 | `<html lang="en">`, `<meta charset="utf-8">` | Mevcut ve valide |
 
 ## 2. Performans & Core Web Vitals (P0)
 | Görev | Öncelik | Açıklama | Kabul Kriteri |
@@ -39,13 +39,13 @@ Bu doküman; portföy siten (Next.js statik export) için maksimum SEO, performa
 | [ ] Başlık hiyerarşisi | P0 | Bölümler mantıklı (What I Do = h2) | HTML outlinerde tutarlı |
 | [ ] Liste semantiği | P1 | Teknoloji / bullet grupları `<ul><li>` | Erişilebilirlik analizinde OK |
 | [ ] Anlamlı buton/anchor metin | P1 | "Click here" yok, eylem odaklı | Lighthouse link-name pass |
-| [ ] Alt metinler | P0 | Her görsel fonksiyonel alt | Axe audit hatasız |
+| [x] Alt metinler | P0 | Her görsel fonksiyonel alt | Axe audit hatasız |
 
 ## 4. Structured Data (Schema.org) (P1)
 | Görev | Öncelik | Açıklama | Kabul Kriteri |
 |-------|---------|----------|---------------|
-| [ ] Person JSON-LD | P1 | Ad, rol, sameAs linkler | Rich Results Test: valid |
-| [ ] WebSite + SearchAction (ops.) | P1 | Site entity tanımı | Testte hata yok |
+| [x] Person JSON-LD | P1 | Ad, rol, sameAs linkler | Rich Results Test: valid |
+| [x] WebSite + SearchAction (ops.) | P1 | Site entity tanımı | SearchAction henüz eklenmedi (ileride) |
 | [ ] Project / SoftwareSourceCode | P1 | Featured Projects için | En az 3 proje schema geçerli |
 | [ ] BreadcrumbList | P2 | Derinlik artarsa | Testte breadcrumb görünüyor |
 | [ ] FAQ (ops.) | P2 | SSS eklersen | SERP FAQ snippet |
@@ -53,11 +53,11 @@ Bu doküman; portföy siten (Next.js statik export) için maksimum SEO, performa
 ## 5. Open Graph & Sosyal (P0/P1)
 | Görev | Öncelik | Açıklama | Kabul Kriteri |
 |-------|---------|----------|---------------|
-| [ ] OG temel taglar | P0 | title, description, url, type | Facebook debugger hatasız |
-| [ ] OG image 1200x630 | P0 | `/public/og.jpg` | Twitter Card / OG preview doğru |
-| [ ] Twitter Card | P1 | `summary_large_image` | Card validator: OK |
-| [ ] Favicon / Touch icons | P1 | 32x32, 180x180, mask-icon | Lighthouse favicon warning yok |
-| [ ] Theme-color (dark/light) | P1 | Prefers-color-scheme bazlı | Meta taglar kaynakta |
+| [x] OG temel taglar | P0 | title, description, url, type | Facebook debugger hatasız |
+| [x] OG image 1200x630 | P0 | `/public/og.svg` (orijinal gereksinimde .jpg, SVG kullanıldı) | Twitter Card / OG preview doğru |
+| [x] Twitter Card | P1 | `summary_large_image` | Card validator: OK |
+| [x] Favicon / Touch icons | P1 | 32x32, 180x180, mask-icon | Lighthouse favicon warning yok |
+| [x] Theme-color (dark/light) | P1 | Prefers-color-scheme bazlı | Meta taglar kaynakta |
 
 ## 6. Erişilebilirlik (A11y) (P1)
 | Görev | Öncelik | Açıklama | Kabul Kriteri |
@@ -100,7 +100,7 @@ Bu doküman; portföy siten (Next.js statik export) için maksimum SEO, performa
 ## 11. Build & Dağıtım (P1)
 | Görev | Öncelik | Açıklama | Kabul Kriteri |
 |-------|---------|----------|---------------|
-| [ ] Temiz build script | P1 | `npm run clean` (.next/out) | Script çalışıyor |
+| [x] Temiz build script | P1 | `npm run clean` (.next/out) | Script çalışıyor |
 | [ ] Görsel envanter temizlik | P1 | Kullanılmayan dosya sil | Public klasör sade |
 | [ ] OG image otomasyonu | P2 | Dynamic OG (ops.) | Her proje share görseli |
 
@@ -128,11 +128,11 @@ Bu doküman; portföy siten (Next.js statik export) için maksimum SEO, performa
 
 ---
 ## Hızlı Kazanım (Quick Wins)
-- [ ] `public/og.jpg` üret
-- [ ] Person + WebSite JSON-LD ekle
-- [ ] Canonical tag şablonu
+- [x] `public/og.jpg` üret (Not: `og.svg` olarak uygulandı)
+- [x] Person + WebSite JSON-LD ekle
+- [x] Canonical tag şablonu
 - [ ] Görselleri sıkıştır (Squoosh)
-- [ ] Alt metinleri denetle
+- [x] Alt metinleri denetle
 - [ ] Lighthouse raporu kaydet (baseline)
 
 ---

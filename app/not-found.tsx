@@ -1,52 +1,17 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center">
-      <div className="text-center">
-        <motion.h1
-          className="text-9xl font-bold mb-4"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          404
-        </motion.h1>
-        
-        <motion.h2
-          className="text-3xl font-bold mb-6"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          PAGE NOT FOUND
-        </motion.h2>
-        
-        <motion.p
-          className="text-gray-400 mb-8 max-w-md mx-auto"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          The page you&apos;re looking for doesn&apos;t exist or has been moved.
-        </motion.p>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <Link
-            href="/"
-            className="px-8 py-4 bg-white text-black hover:bg-gray-200 transition-all duration-300 font-medium"
-          >
-            Go Home
-          </Link>
-        </motion.div>
+    <main className="min-h-[70vh] flex flex-col items-center justify-center text-center px-6 py-24">
+      <p className="text-sm font-semibold tracking-wider text-blue-500 mb-4">404</p>
+      <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Page Not Found</h1>
+      <p className="text-gray-600 dark:text-gray-400 max-w-md mb-10">
+        The page you’re looking for doesn’t exist or was moved. You can go back home or explore selected work.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4">
+        <Link href="/" className="px-6 py-3 rounded-full text-sm font-medium bg-white text-black dark:bg-white dark:text-black shadow hover:shadow-lg transition">Go Home</Link>
+        <Link href="/projects" className="px-6 py-3 rounded-full text-sm font-medium border border-white/20 text-white bg-black/40 dark:bg-white/10 hover:bg-black/70 dark:hover:bg-white/20 transition">View Projects</Link>
       </div>
-    </div>
+    </main>
   )
 }
