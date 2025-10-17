@@ -93,7 +93,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        <ThemeProvider>
+        <ThemeProvider defaultTheme="light" storageKey="portfolio-theme">
           {ENABLE_INTERACTIVE_GRID && <InteractiveGrid />}
           <ScrollProgress />
           <Navigation />

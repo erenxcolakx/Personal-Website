@@ -2,11 +2,26 @@
 
 import { Calendar, MapPin } from 'lucide-react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const experiences = [
   {
+    title: 'IT Intern',
+    company: 'Hepsiburada',
+    logo: '/images/logos/hepsiburada.png',
+    location: 'Istanbul, Turkey',
+    period: '10.2025 - Present',
+    type: 'Internship',
+    description: "Started an internship at Hepsiburada.",
+    achievements: [
+      'Joined Hepsiburada as an intern and began contributing to projects'
+    ],
+    technologies: ['HTML','CSS','JavaScript']
+  },
+  {
     title: 'Full Stack Developer',
     company: 'DeepSport Athletic',
+    logo: '/images/logos/deepsport.png',
     location: 'Istanbul, Turkey',
     period: '06.2025 - Present',
     type: 'Full-time',
@@ -22,6 +37,7 @@ const experiences = [
   {
     title: 'Part-time Front-End Developer',
     company: 'DeepSport Athletic',
+    logo: '/images/logos/deepsport.png',
     location: 'Istanbul, Turkey',
     period: '11.2024 - 01.2025',
     type: 'Part-time',
@@ -37,6 +53,7 @@ const experiences = [
   {
     title: 'IT Intern',
     company: 'BRF - Banvit',
+    logo: '/images/logos/banvit.png',
     location: 'Istanbul, Turkey',
     period: '07.2024 - 08.2024',
     type: 'Internship',
@@ -52,6 +69,7 @@ const experiences = [
   {
     title: 'Social Media Coordinator',
     company: 'DeMarmara Experiential Education Center',
+    logo: '/images/logos/dem.png',
     location: 'Istanbul, Turkey',
     period: 'October 2022 - June 2023',
     type: 'Volunteer',
@@ -130,14 +148,27 @@ export function Experience() {
                     className="relative flex gap-6"
                   >
                     {/* node */}
-                    <div className="mt-2 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/30 to-purple-500/30 border border-white/20 dark:border-white/10 backdrop-blur flex items-center justify-center shadow-inner shadow-black/20">
-                      <div className="w-5 h-5 rounded-md bg-gradient-to-br from-blue-500 to-purple-500" />
+                      <div className="mt-2">
+                      {exp.logo ? (
+                        <Image
+                          src={exp.logo}
+                          alt={`${exp.company} logo`}
+                          width={48}
+                          height={48}
+                          className="object-contain"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-md bg-gradient-to-br from-blue-500 to-purple-500" />
+                      )}
                     </div>
                     <div className="flex-1 p-6 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-[0_0_0_1px_rgba(255,255,255,0.04)] hover:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.25)] transition duration-500">
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
                         <div>
                           <h4 className="text-lg md:text-xl font-semibold tracking-tight mb-1">{exp.title}</h4>
-                          <p className="text-sm font-medium text-blue-600 dark:text-blue-400">{exp.company}</p>
+                          <p className="text-sm font-medium text-blue-600 dark:text-blue-400 flex items-center gap-3">
+                            <span className="sr-only">Company:</span>
+                            <span>{exp.company}</span>
+                          </p>
                         </div>
                         <div className="flex flex-col items-start sm:items-end text-xs md:text-sm gap-1 text-gray-500 dark:text-gray-400">
                           <span className="inline-flex items-center gap-1"><Calendar className="w-4 h-4" />{exp.period}</span>

@@ -22,7 +22,7 @@ const initialState: ThemeProviderState = {
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
-export function ThemeProvider({
+function ThemeProviderComponent({
   children,
   defaultTheme = 'light',
   storageKey = 'portfolio-theme',
@@ -77,3 +77,5 @@ export const useTheme = () => {
 
   return context
 }
+
+export const ThemeProvider = ThemeProviderComponent
