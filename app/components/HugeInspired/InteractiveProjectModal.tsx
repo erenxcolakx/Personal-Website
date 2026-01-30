@@ -1,103 +1,106 @@
-'use client'
+"use client";
 
-import { useState, useEffect, useRef, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X, ExternalLink, Loader } from 'lucide-react'
+import { AnimatePresence, motion } from "framer-motion";
+import { ExternalLink, Loader, X } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface Project {
-  id: number
-  title: string
-  category: string
-  description: string
-  longDescription: string
-  image: string
-  technologies: string[]
-  liveUrl: string
-  githubUrl: string
-  color: string
-  year: string
-  isInteractive: boolean
-  iframeUrl?: string
-  fallbackMessage?: string
+  id: number;
+  title: string;
+  category: string;
+  description: string;
+  longDescription: string;
+  image: string;
+  technologies: string[];
+  liveUrl: string;
+  githubUrl: string;
+  color: string;
+  year: string;
+  isInteractive: boolean;
+  iframeUrl?: string;
+  fallbackMessage?: string;
 }
 
 interface InteractiveProjectModalProps {
-  project: Project
-  isOpen: boolean
-  onClose: () => void
-  onOpenExternal: () => void
+  project: Project;
+  isOpen: boolean;
+  onClose: () => void;
+  onOpenExternal: () => void;
 }
 
-export function InteractiveProjectModal({ 
-  project, 
-  isOpen, 
-  onClose, 
-  onOpenExternal 
+export function InteractiveProjectModal({
+  project,
+  isOpen,
+  onClose,
+  onOpenExternal,
 }: InteractiveProjectModalProps) {
-  const [iframeLoading, setIframeLoading] = useState(true)
-  const [iframeError, setIframeError] = useState(false)
+  const [iframeLoading, setIframeLoading] = useState(true);
+  const [iframeError, setIframeError] = useState(false);
   // Use ref for timeout to avoid stale closure & dependency noise
-  const loadingTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const loadingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (isOpen && project.iframeUrl) {
-      setIframeLoading(true)
-      setIframeError(false)
-      if (loadingTimeoutRef.current) clearTimeout(loadingTimeoutRef.current)
+      setIframeLoading(true);
+      setIframeError(false);
+      if (loadingTimeoutRef.current) clearTimeout(loadingTimeoutRef.current);
       loadingTimeoutRef.current = setTimeout(() => {
-        setIframeLoading(false)
-        setIframeError(true)
-      }, 10000) // 10s timeout
+        setIframeLoading(false);
+        setIframeError(true);
+      }, 10000); // 10s timeout
     } else {
       if (loadingTimeoutRef.current) {
-        clearTimeout(loadingTimeoutRef.current)
-        loadingTimeoutRef.current = null
+        clearTimeout(loadingTimeoutRef.current);
+        loadingTimeoutRef.current = null;
       }
     }
     return () => {
       if (loadingTimeoutRef.current) {
-        clearTimeout(loadingTimeoutRef.current)
-        loadingTimeoutRef.current = null
+        clearTimeout(loadingTimeoutRef.current);
+        loadingTimeoutRef.current = null;
       }
-    }
-  }, [isOpen, project.iframeUrl])
+    };
+  }, [isOpen, project.iframeUrl]);
 
   const handleIframeLoad = () => {
-    setIframeLoading(false)
-    setIframeError(false)
-    if (loadingTimeoutRef.current) clearTimeout(loadingTimeoutRef.current)
-  }
+    setIframeLoading(false);
+    setIframeError(false);
+    if (loadingTimeoutRef.current) clearTimeout(loadingTimeoutRef.current);
+  };
 
   const handleIframeError = () => {
-    setIframeLoading(false)
-    setIframeError(true)
-    if (loadingTimeoutRef.current) clearTimeout(loadingTimeoutRef.current)
-  }
+    setIframeLoading(false);
+    setIframeError(true);
+    if (loadingTimeoutRef.current) clearTimeout(loadingTimeoutRef.current);
+  };
 
   const handleClose = useCallback(() => {
-    setIframeLoading(true)
-    setIframeError(false)
-    if (loadingTimeoutRef.current) clearTimeout(loadingTimeoutRef.current)
-    onClose()
-  }, [onClose])
+    setIframeLoading(true);
+    setIframeError(false);
+    if (loadingTimeoutRef.current) clearTimeout(loadingTimeoutRef.current);
+    onClose();
+  }, [onClose]);
 
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Escape') handleClose()
-  }, [handleClose])
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") handleClose();
+    },
+    [handleClose],
+  );
 
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = 'hidden'
+      document.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
     } else {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = 'unset'
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = 'unset'
-    }
-  }, [isOpen, handleKeyDown])
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen, handleKeyDown]);
 
   return (
     <AnimatePresence>
@@ -149,7 +152,7 @@ export function InteractiveProjectModal({
                   <ExternalLink className="w-4 h-4" />
                   <span className="hidden sm:inline">Open in New Tab</span>
                 </button>
-                
+
                 <button
                   onClick={handleClose}
                   className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200"
@@ -183,7 +186,8 @@ export function InteractiveProjectModal({
                       Preview Not Available
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 mb-6">
-                      {project.fallbackMessage || "This project cannot be displayed in an iframe due to security restrictions."}
+                      {project.fallbackMessage ||
+                        "This project cannot be displayed in an iframe due to security restrictions."}
                     </p>
                     <button
                       onClick={onOpenExternal}
@@ -200,7 +204,7 @@ export function InteractiveProjectModal({
               {project.iframeUrl && (
                 <iframe
                   src={project.iframeUrl}
-                  className={`w-full h-full border-0 ${iframeLoading || iframeError ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
+                  className={`w-full h-full border-0 ${iframeLoading || iframeError ? "opacity-0" : "opacity-100"} transition-opacity duration-300`}
                   onLoad={handleIframeLoad}
                   onError={handleIframeError}
                   title={`${project.title} - Interactive Demo`}
@@ -227,5 +231,5 @@ export function InteractiveProjectModal({
         </motion.div>
       )}
     </AnimatePresence>
-  )
+  );
 }

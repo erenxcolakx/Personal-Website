@@ -1,43 +1,43 @@
-'use client'
+"use client";
 
-import { motion, useMotionValue, useSpring } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export function InteractiveGrid() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [mounted, setMounted] = useState(false)
-  const [dots, setDots] = useState<Array<{ x: number; y: number; delay: number }>>([])
-  
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-  
-  const springConfig = { damping: 25, stiffness: 700 }
-  const mouseXSpring = useSpring(mouseX, springConfig)
-  const mouseYSpring = useSpring(mouseY, springConfig)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mounted, setMounted] = useState(false);
+  const [dots, setDots] = useState<Array<{ x: number; y: number; delay: number }>>([]);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 700 };
+  const mouseXSpring = useSpring(mouseX, springConfig);
+  const mouseYSpring = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    setMounted(true)
-    
+    setMounted(true);
+
     // Generate dots only on client side
     const generatedDots = Array.from({ length: 50 }, () => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
-      delay: Math.random() * 2
-    }))
-    setDots(generatedDots)
+      delay: Math.random() * 2,
+    }));
+    setDots(generatedDots);
 
     const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-      mouseX.set(e.clientX)
-      mouseY.set(e.clientY)
-    }
+      setMousePosition({ x: e.clientX, y: e.clientY });
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
 
-    window.addEventListener('mousemove', updateMousePosition)
-    return () => window.removeEventListener('mousemove', updateMousePosition)
-  }, [mouseX, mouseY])
+    window.addEventListener("mousemove", updateMousePosition);
+    return () => window.removeEventListener("mousemove", updateMousePosition);
+  }, [mouseX, mouseY]);
 
   if (!mounted) {
-    return <div className="fixed inset-0 pointer-events-none z-0" />
+    return <div className="fixed inset-0 pointer-events-none z-0" />;
   }
 
   return (
@@ -64,7 +64,7 @@ export function InteractiveGrid() {
             }}
           />
         ))}
-        
+
         {/* Horizontal Lines */}
         {Array.from({ length: 15 }).map((_, i) => (
           <motion.div
@@ -102,7 +102,7 @@ export function InteractiveGrid() {
               opacity: [0.3, 0.8, 0.3],
             }}
             transition={{
-              duration: 3 + (dot.delay * 2),
+              duration: 3 + dot.delay * 2,
               repeat: Infinity,
               delay: dot.delay,
             }}
@@ -116,8 +116,8 @@ export function InteractiveGrid() {
         style={{
           x: mouseXSpring,
           y: mouseYSpring,
-          translateX: '-50%',
-          translateY: '-50%',
+          translateX: "-50%",
+          translateY: "-50%",
         }}
         animate={{
           scale: [1, 1.2, 1],
@@ -128,5 +128,5 @@ export function InteractiveGrid() {
         }}
       />
     </div>
-  )
+  );
 }

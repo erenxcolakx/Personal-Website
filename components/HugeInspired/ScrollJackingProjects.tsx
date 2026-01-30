@@ -1,92 +1,100 @@
-'use client'
+"use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
-import Image from 'next/image'
-import { useState } from 'react'
-import { ExternalLink, Github } from 'lucide-react'
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ExternalLink, Github } from "lucide-react";
+import Image from "next/image";
+import { useRef, useState } from "react";
 
 const projects = [
   {
-    title: 'Bweet',
-    description: 'A modern social media platform built with Next.js and TypeScript. Features real-time messaging, user authentication, and responsive design.',
-    image: '/images/projects/bweet.png',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase'],
-    liveUrl: '#',
-    githubUrl: '#',
+    title: "Bweet",
+    description:
+      "A modern social media platform built with Next.js and TypeScript. Features real-time messaging, user authentication, and responsive design.",
+    image: "/images/projects/bweet.png",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
+    liveUrl: "#",
+    githubUrl: "#",
   },
   {
-    title: 'Dreamer',
-    description: 'Dream tracking and analysis application with AI-powered insights and beautiful data visualizations.',
-    image: '/images/projects/dreamer.png',
-    technologies: ['React Native', 'Python', 'TensorFlow', 'PostgreSQL'],
-    liveUrl: '#',
-    githubUrl: '#',
+    title: "Dreamer",
+    description:
+      "Dream tracking and analysis application with AI-powered insights and beautiful data visualizations.",
+    image: "/images/projects/dreamer.png",
+    technologies: ["React Native", "Python", "TensorFlow", "PostgreSQL"],
+    liveUrl: "#",
+    githubUrl: "#",
   },
   {
-    title: 'Dreamer App',
-    description: 'Mobile companion app for dream tracking with offline capabilities and cloud synchronization.',
-    image: '/images/projects/dreamerapp.png',
-    technologies: ['React Native', 'Redux', 'AsyncStorage', 'Firebase'],
-    liveUrl: '#',
-    githubUrl: '#',
+    title: "Dreamer App",
+    description:
+      "Mobile companion app for dream tracking with offline capabilities and cloud synchronization.",
+    image: "/images/projects/dreamerapp.png",
+    technologies: ["React Native", "Redux", "AsyncStorage", "Firebase"],
+    liveUrl: "#",
+    githubUrl: "#",
   },
   {
-    title: 'DS Dashboard',
-    description: 'Comprehensive analytics dashboard for data science projects with interactive charts and real-time updates.',
-    image: '/images/projects/dsdashboard.png',
-    technologies: ['Next.js', 'D3.js', 'Python', 'FastAPI'],
-    liveUrl: '#',
-    githubUrl: '#',
+    title: "DS Dashboard",
+    description:
+      "Comprehensive analytics dashboard for data science projects with interactive charts and real-time updates.",
+    image: "/images/projects/dsdashboard.png",
+    technologies: ["Next.js", "D3.js", "Python", "FastAPI"],
+    liveUrl: "#",
+    githubUrl: "#",
   },
   {
-    title: 'HitnessLab',
-    description: 'Fitness education platform where instructors can upload and manage training videos with course management features.',
-    image: '/images/projects/hitnesslab.png',
-    technologies: ['Spring Boot', 'Next.js', 'Tailwind CSS', 'PostgreSQL'],
-    liveUrl: '#',
-    githubUrl: '#',
+    title: "HitnessLab",
+    description:
+      "Fitness education platform where instructors can upload and manage training videos with course management features.",
+    image: "/images/projects/hitnesslab.png",
+    technologies: ["Spring Boot", "Next.js", "Tailwind CSS", "PostgreSQL"],
+    liveUrl: "#",
+    githubUrl: "#",
   },
   {
-    title: 'Hiversion',
-    description: 'SaaS platform combining microservices with modern frontend for scalable and modular software solutions.',
-    image: '/images/projects/hiversion.png',
-    technologies: ['Next.js', 'Spring Boot', 'PostgreSQL', 'Tailwind CSS'],
-    liveUrl: '#',
-    githubUrl: '#',
+    title: "Hiversion",
+    description:
+      "SaaS platform combining microservices with modern frontend for scalable and modular software solutions.",
+    image: "/images/projects/hiversion.png",
+    technologies: ["Next.js", "Spring Boot", "PostgreSQL", "Tailwind CSS"],
+    liveUrl: "#",
+    githubUrl: "#",
   },
   {
-    title: 'Li Weather',
-    description: 'Beautiful weather application with location-based forecasts and animated weather icons.',
-    image: '/images/projects/liweather.png',
-    technologies: ['React', 'OpenWeather API', 'CSS3', 'Geolocation API'],
-    liveUrl: '#',
-    githubUrl: '#',
+    title: "Li Weather",
+    description:
+      "Beautiful weather application with location-based forecasts and animated weather icons.",
+    image: "/images/projects/liweather.png",
+    technologies: ["React", "OpenWeather API", "CSS3", "Geolocation API"],
+    liveUrl: "#",
+    githubUrl: "#",
   },
   {
-    title: 'SmartTestAI',
-    description: 'AI-powered testing platform that automatically generates test cases and validates software functionality.',
-    image: '/images/projects/smarttestai.png',
-    technologies: ['Python', 'TensorFlow', 'FastAPI', 'React'],
-    liveUrl: '#',
-    githubUrl: '#',
+    title: "SmartTestAI",
+    description:
+      "AI-powered testing platform that automatically generates test cases and validates software functionality.",
+    image: "/images/projects/smarttestai.png",
+    technologies: ["Python", "TensorFlow", "FastAPI", "React"],
+    liveUrl: "#",
+    githubUrl: "#",
   },
   {
-    title: 'Trakya Rezonans',
-    description: 'Medical imaging platform for radiology centers with advanced image processing and patient management.',
-    image: '/images/projects/trakyarezonans.png',
-    technologies: ['Next.js', 'Node.js', 'PostgreSQL', 'DICOM'],
-    liveUrl: '#',
-    githubUrl: '#',
+    title: "Trakya Rezonans",
+    description:
+      "Medical imaging platform for radiology centers with advanced image processing and patient management.",
+    image: "/images/projects/trakyarezonans.png",
+    technologies: ["Next.js", "Node.js", "PostgreSQL", "DICOM"],
+    liveUrl: "#",
+    githubUrl: "#",
   },
-]
+];
 
 export function ScrollJackingProjects() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end end']
-  })
+    offset: ["start start", "end end"],
+  });
 
   return (
     <section ref={containerRef} className="bg-white dark:bg-black">
@@ -98,25 +106,25 @@ export function ScrollJackingProjects() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 interface ProjectCardProps {
-  project: typeof projects[0]
-  index: number
+  project: (typeof projects)[0];
+  index: number;
 }
 
 function ProjectCard({ project, index }: ProjectCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    offset: ['start end', 'end start']
-  })
+    offset: ["start end", "end start"],
+  });
 
-  const y = useTransform(scrollYProgress, [0, 1], [50, -50])
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
-  const [loaded, setLoaded] = useState(false)
-  const [error, setError] = useState(false)
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
 
   return (
     <motion.div
@@ -130,7 +138,9 @@ function ProjectCard({ project, index }: ProjectCardProps) {
     >
       <div className="relative overflow-hidden aspect-[4/3] mb-6 rounded-xl ring-1 ring-gray-200 dark:ring-gray-700 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
         {/* Skeleton */}
-        <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${loaded ? 'opacity-0' : 'opacity-100'}`}>
+        <div
+          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${loaded ? "opacity-0" : "opacity-100"}`}
+        >
           <div className="h-10 w-10 rounded-full border-4 border-gray-300 dark:border-gray-600 border-t-transparent animate-spin" />
         </div>
 
@@ -151,18 +161,23 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             onLoadingComplete={() => {
               // debug log
               // eslint-disable-next-line no-console
-              console.log('Loaded image:', project.image);
-              setLoaded(true)
+              console.log("Loaded image:", project.image);
+              setLoaded(true);
             }}
-            onError={() => { setError(true); setLoaded(true) }}
-            className={`object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110 ${loaded ? 'opacity-100' : 'opacity-0'} ${error ? 'hidden' : ''}`}
+            onError={() => {
+              setError(true);
+              setLoaded(true);
+            }}
+            className={`object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:brightness-110 ${loaded ? "opacity-100" : "opacity-0"} ${error ? "hidden" : ""}`}
             sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
             priority={index < 3}
           />
         )}
 
         {/* Soft gradient overlay always present for readability */}
-  <div className={`absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent transition-opacity ${loaded ? 'opacity-40 group-hover:opacity-30' : 'opacity-70'} ${error ? 'hidden' : ''}`} />
+        <div
+          className={`absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent transition-opacity ${loaded ? "opacity-40 group-hover:opacity-30" : "opacity-70"} ${error ? "hidden" : ""}`}
+        />
 
         {/* Hover actions */}
         <motion.div
@@ -206,7 +221,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         >
           {project.title}
         </motion.h3>
-        
+
         <div className="flex flex-wrap gap-2 mb-2">
           {project.technologies.slice(0, 3).map((tech) => (
             <span
@@ -217,7 +232,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             </span>
           ))}
         </div>
-        
+
         <motion.p
           className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed line-clamp-3"
           initial={{ opacity: 0.85 }}
@@ -227,5 +242,5 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         </motion.p>
       </div>
     </motion.div>
-  )
+  );
 }

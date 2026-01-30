@@ -1,49 +1,49 @@
-'use client'
+"use client";
 
-import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useRef, useEffect, useCallback } from 'react'
-import Image from 'next/image'
-import { ExternalLink, Maximize2, X, Play, Github } from 'lucide-react'
-import { ParallaxBackground } from './ParallaxBackground'
+import { AnimatePresence, motion } from "framer-motion";
+import { ExternalLink, Github, Maximize2, Play, X } from "lucide-react";
+import Image from "next/image";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ParallaxBackground } from "./ParallaxBackground";
 
 // Map technology labels to existing public image assets (only those that exist)
 const techIcons: Record<string, string> = {
-  'Next.js': '/images/nextjs.png',
-  'React': '/images/react.webp',
-  'Tailwind CSS': '/images/tailwind.png',
-  'PostgreSQL': '/images/postgresql.png',
-  'Postgres (Supabase)': '/images/postgresql.png',
-  'Supabase': '/images/postgresql.png',
-  'Node.js': '/images/node.png',
-  'Express.js': '/images/express.png',
-  'Python': '/images/python.png',
-  'Docker': '/images/docker.webp',
-  'Pandas': '/images/pandas.png',
-  'NumPy': '/images/numpy.png',
-  'Seaborn': '/images/seaborn.png',
-  'Matplotlib': '/images/matplot.png',
-  'Java': '/images/java.png',
-  'CSS': '/images/css.png',
-  'HTML': '/images/html.png',
-  'Bootstrap': '/images/bootstrap.png',
-  'AI/ML': '/images/smarttestai.png',
-}
+  "Next.js": "/images/nextjs.png",
+  React: "/images/react.webp",
+  "Tailwind CSS": "/images/tailwind.png",
+  PostgreSQL: "/images/postgresql.png",
+  "Postgres (Supabase)": "/images/postgresql.png",
+  Supabase: "/images/postgresql.png",
+  "Node.js": "/images/node.png",
+  "Express.js": "/images/express.png",
+  Python: "/images/python.png",
+  Docker: "/images/docker.webp",
+  Pandas: "/images/pandas.png",
+  NumPy: "/images/numpy.png",
+  Seaborn: "/images/seaborn.png",
+  Matplotlib: "/images/matplot.png",
+  Java: "/images/java.png",
+  CSS: "/images/css.png",
+  HTML: "/images/html.png",
+  Bootstrap: "/images/bootstrap.png",
+  "AI/ML": "/images/smarttestai.png",
+};
 
 interface Project {
-  id: number
-  title: string
-  category: string
-  description: string
-  longDescription: string
-  image: string
-  technologies: string[]
-  liveUrl: string
-  githubUrl: string
-  color: string
-  year: string
-  isInteractive: boolean
-  iframeUrl?: string
-  fallbackMessage?: string
+  id: number;
+  title: string;
+  category: string;
+  description: string;
+  longDescription: string;
+  image: string;
+  technologies: string[];
+  liveUrl: string;
+  githubUrl: string;
+  color: string;
+  year: string;
+  isInteractive: boolean;
+  iframeUrl?: string;
+  fallbackMessage?: string;
 }
 
 const projects: Project[] = [
@@ -52,258 +52,282 @@ const projects: Project[] = [
     title: "DeepSport",
     category: "Marketing Site",
     description: "High-conversion landing page for DeepSport platform",
-    longDescription: "A performance-focused, responsive landing page highlighting DeepSport's analytics capabilities with localized Turkish content and fast-loading, SEO-friendly architecture.",
+    longDescription:
+      "A performance-focused, responsive landing page highlighting DeepSport's analytics capabilities with localized Turkish content and fast-loading, SEO-friendly architecture.",
     image: "/images/projects/deepsportlp.png",
-    technologies: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion', 'SEO', 'Postgres (Supabase)'],
+    technologies: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Framer Motion",
+      "SEO",
+      "Postgres (Supabase)",
+    ],
     liveUrl: "https://deepsportapp.com/tr",
     githubUrl: "#",
     color: "from-orange-500 to-pink-600",
     year: "2024",
     isInteractive: false,
-    fallbackMessage: "Marketing site optimized for direct visit; iframe disabled."
+    fallbackMessage: "Marketing site optimized for direct visit; iframe disabled.",
   },
   {
     id: 2,
     title: "HitnessLab",
     category: "Fitness Platform",
     description: "Enhanced fitness education and training platform",
-    longDescription: "Advanced fitness platform with video courses, progress tracking, and personalized workout plans for fitness enthusiasts.",
+    longDescription:
+      "Advanced fitness platform with video courses, progress tracking, and personalized workout plans for fitness enthusiasts.",
     image: "/images/projects/hitnesslab.png",
-    technologies: ['Next.js', 'Spring Boot', 'Postgres', 'Microservices', 'Video Streaming', 'Tailwind CSS'],
+    technologies: [
+      "Next.js",
+      "Spring Boot",
+      "Postgres",
+      "Microservices",
+      "Video Streaming",
+      "Tailwind CSS",
+    ],
     liveUrl: "https://hitness-lab.vercel.app",
     githubUrl: "#",
     color: "from-green-600 to-teal-600",
     year: "2024",
-  isInteractive: false,
-  // iframeUrl removed because project disallows embedding
-  fallbackMessage: "This fitness platform blocks iframe embedding."
+    isInteractive: false,
+    // iframeUrl removed because project disallows embedding
+    fallbackMessage: "This fitness platform blocks iframe embedding.",
   },
   {
-  id: 3,
+    id: 3,
     title: "Hiversion",
     category: "SaaS Platform",
     description: "Microservices-based SaaS platform",
-    longDescription: "Developing a SaaS platform that combines microservices with a modern frontend for scalable and modular software solutions. Spring Boot used for backend microservices; Next.js and Tailwind CSS for frontend interface.",
+    longDescription:
+      "Developing a SaaS platform that combines microservices with a modern frontend for scalable and modular software solutions. Spring Boot used for backend microservices; Next.js and Tailwind CSS for frontend interface.",
     image: "/images/projects/hiversion.png",
-    technologies: ['Next.js', 'Spring Boot', 'PostgreSQL', 'Tailwind CSS', 'Microservices'],
+    technologies: ["Next.js", "Spring Boot", "PostgreSQL", "Tailwind CSS", "Microservices"],
     liveUrl: "https://hive-front-psi.vercel.app",
     githubUrl: "#",
     color: "from-blue-600 to-purple-600",
     year: "2024",
     isInteractive: true,
     iframeUrl: "https://hive-front-psi.vercel.app",
-    fallbackMessage: "This project may not be available for preview due to security restrictions."
+    fallbackMessage: "This project may not be available for preview due to security restrictions.",
   },
   {
-  id: 4,
+    id: 4,
     title: "DeepSport Dashboard",
     category: "Analytics Dashboard",
     description: "Performance tracking dashboard for sports analytics",
-    longDescription: "Comprehensive dashboard for coaches and athletes featuring real-time performance metrics, data visualization, and analytics tools.",
+    longDescription:
+      "Comprehensive dashboard for coaches and athletes featuring real-time performance metrics, data visualization, and analytics tools.",
     image: "/images/projects/dsdashboard.png",
-    technologies: ['Next.js', 'React', 'Chart.js', 'Tailwind CSS', 'Analytics'],
+    technologies: ["Next.js", "React", "Chart.js", "Tailwind CSS", "Analytics"],
     liveUrl: "https://deep-sport-dashboard.vercel.app",
     githubUrl: "#",
     color: "from-indigo-600 to-blue-600",
     year: "2024",
     isInteractive: true,
     iframeUrl: "https://deep-sport-dashboard.vercel.app",
-    fallbackMessage: "Dashboard may require authentication for full access."
+    fallbackMessage: "Dashboard may require authentication for full access.",
   },
   {
-  id: 5,
+    id: 5,
     title: "Trakya Rezonans",
     category: "Healthcare Platform",
     description: "Medical imaging and healthcare services platform",
-    longDescription: "Professional healthcare platform providing medical imaging services, appointment scheduling, and patient management systems.",
+    longDescription:
+      "Professional healthcare platform providing medical imaging services, appointment scheduling, and patient management systems.",
     image: "/images/projects/trakyarezonans.png",
-    technologies: ['React', 'Next.js', 'Responsive Design'],
+    technologies: ["React", "Next.js", "Responsive Design"],
     liveUrl: "https://trakyarezonans.com",
     githubUrl: "#",
     color: "from-green-600 to-emerald-600",
     year: "2024",
-  isInteractive: false,
-  // iframeUrl removed because project disallows embedding / for consistency
-  fallbackMessage: "Healthcare platform blocks iframe preview for privacy."
+    isInteractive: false,
+    // iframeUrl removed because project disallows embedding / for consistency
+    fallbackMessage: "Healthcare platform blocks iframe preview for privacy.",
   },
   {
-  id: 6,
+    id: 6,
     title: "Smart Test AI",
     category: "AI Education Tool",
     description: "AI-powered test generation from PDF documents",
-    longDescription: "Intelligent application that automatically generates tests and quizzes from PDF documents using advanced AI processing.",
+    longDescription:
+      "Intelligent application that automatically generates tests and quizzes from PDF documents using advanced AI processing.",
     image: "/images/projects/smarttestai.png",
-    technologies: ['Next.js', 'Gemini API', 'PDF Processing', 'React'],
+    technologies: ["Next.js", "Gemini API", "PDF Processing", "React"],
     liveUrl: "https://smart-test-ai.vercel.app",
     githubUrl: "#",
     color: "from-violet-600 to-purple-600",
     year: "2024",
     isInteractive: true,
     iframeUrl: "https://smart-test-ai.vercel.app",
-    fallbackMessage: "AI test generator may require file uploads for demonstration."
+    fallbackMessage: "AI test generator may require file uploads for demonstration.",
   },
   {
-  id: 7,
+    id: 7,
     title: "Dreamer",
     category: "Dream Journal",
     description: "Personal dream journaling application",
-    longDescription: "A beautiful and intuitive dream journal application that helps users track, analyze, and understand their dreams with AI-powered insights.",
+    longDescription:
+      "A beautiful and intuitive dream journal application that helps users track, analyze, and understand their dreams with AI-powered insights.",
     image: "/images/projects/dreamer.png",
-    technologies: ['React', 'Next.js', 'Supabase', 'Express.js'],
+    technologies: ["React", "Next.js", "Supabase", "Express.js"],
     liveUrl: "https://dreamerapp.vercel.app",
     githubUrl: "#",
     color: "from-indigo-600 to-purple-600",
     year: "2023",
     isInteractive: false,
-    fallbackMessage: "Dream journal app is available as a PWA."
+    fallbackMessage: "Dream journal app is available as a PWA.",
   },
   {
-  id: 8,
+    id: 8,
     title: "Bweet",
     category: "Social Platform",
     description: "Book review social platform",
-    longDescription: "Twitter-like social platform dedicated to book reviews, recommendations, and literary discussions among book enthusiasts.",
+    longDescription:
+      "Twitter-like social platform dedicated to book reviews, recommendations, and literary discussions among book enthusiasts.",
     image: "/images/projects/bweet.png",
-    technologies: ['React', 'Supabase', 'Bootstrap', 'Express.js'],
+    technologies: ["React", "Supabase", "Bootstrap", "Express.js"],
     liveUrl: "https://bweet.vercel.app",
     githubUrl: "#",
     color: "from-rose-600 to-pink-600",
     year: "2024",
     isInteractive: true,
     iframeUrl: "https://bweet.vercel.app",
-    fallbackMessage: "Social platform may require user registration for full experience."
+    fallbackMessage: "Social platform may require user registration for full experience.",
   },
   {
-  id: 9,
+    id: 9,
     title: "LiWeather",
     category: "Weather Application",
     description: "Real-time weather tracking application",
-    longDescription: "Comprehensive weather application providing real-time weather data, forecasts, and interactive weather maps.",
+    longDescription:
+      "Comprehensive weather application providing real-time weather data, forecasts, and interactive weather maps.",
     image: "/images/projects/liweather.png",
-    technologies: ['React', 'Open-Meteo API'],
+    technologies: ["React", "Open-Meteo API"],
     liveUrl: "https://liweather.vercel.app",
     githubUrl: "#",
     color: "from-cyan-600 to-blue-600",
     year: "2024",
     isInteractive: true,
     iframeUrl: "https://liweather.vercel.app",
-    fallbackMessage: "Weather app may require location permissions."
-  }
-]
+    fallbackMessage: "Weather app may require location permissions.",
+  },
+];
 
 export function ScrollJackingProjects() {
-  const [currentProject, setCurrentProject] = useState(0)
-  const [direction, setDirection] = useState(1)
-  const [animating, setAnimating] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const deltaRef = useRef(0)
-  const touchStartY = useRef<number | null>(null)
+  const [currentProject, setCurrentProject] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [animating, setAnimating] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const deltaRef = useRef(0);
+  const touchStartY = useRef<number | null>(null);
 
-  const clampIndex = (i: number) => Math.max(0, Math.min(projects.length - 1, i))
+  const clampIndex = (i: number) => Math.max(0, Math.min(projects.length - 1, i));
 
   const goTo = useCallback((next: number, dir: number) => {
-    setCurrentProject(prev => {
-      const target = clampIndex(next)
-      if (target === prev) return prev
-      setDirection(dir)
-      setAnimating(true)
+    setCurrentProject((prev) => {
+      const target = clampIndex(next);
+      if (target === prev) return prev;
+      setDirection(dir);
+      setAnimating(true);
       // unlock after animation ends
-      setTimeout(() => setAnimating(false), 900)
-      return target
-    })
-  }, [] )
+      setTimeout(() => setAnimating(false), 900);
+      return target;
+    });
+  }, []);
 
   useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
+    const el = containerRef.current;
+    if (!el) return;
 
     const wheelHandler = (e: WheelEvent) => {
-      if (document.body.classList.contains('project-modal-open')) return
-      const atFirst = currentProject === 0
-      const atLast = currentProject === projects.length - 1
-      const goingDown = e.deltaY > 0
-      const goingUp = e.deltaY < 0
+      if (document.body.classList.contains("project-modal-open")) return;
+      const atFirst = currentProject === 0;
+      const atLast = currentProject === projects.length - 1;
+      const goingDown = e.deltaY > 0;
+      const goingUp = e.deltaY < 0;
 
       // Allow normal page scroll if user tries to scroll beyond edges
       if ((atFirst && goingUp) || (atLast && goingDown)) {
-        return // do not prevent default -> page can continue
+        return; // do not prevent default -> page can continue
       }
 
       // Inside slider range: intercept
-      e.preventDefault()
-      if (animating) return
+      e.preventDefault();
+      if (animating) return;
       // Accumulate with damping to avoid micro-scroll triggering
-      deltaRef.current += e.deltaY
-      const threshold = 180 // higher threshold for deliberate intent
+      deltaRef.current += e.deltaY;
+      const threshold = 180; // higher threshold for deliberate intent
       if (deltaRef.current > threshold && goingDown) {
-        deltaRef.current = 0
-        goTo(currentProject + 1, 1)
+        deltaRef.current = 0;
+        goTo(currentProject + 1, 1);
       } else if (deltaRef.current < -threshold && goingUp) {
-        deltaRef.current = 0
-        goTo(currentProject - 1, -1)
+        deltaRef.current = 0;
+        goTo(currentProject - 1, -1);
       }
-    }
+    };
 
     const touchStart = (e: TouchEvent) => {
-      if (document.body.classList.contains('project-modal-open')) return
-      touchStartY.current = e.touches[0].clientY
-    }
+      if (document.body.classList.contains("project-modal-open")) return;
+      touchStartY.current = e.touches[0].clientY;
+    };
     const touchMove = (e: TouchEvent) => {
-      if (touchStartY.current == null || animating) return
-      const diff = touchStartY.current - e.touches[0].clientY
-      const atFirst = currentProject === 0
-      const atLast = currentProject === projects.length - 1
-      const threshold = 80
+      if (touchStartY.current == null || animating) return;
+      const diff = touchStartY.current - e.touches[0].clientY;
+      const atFirst = currentProject === 0;
+      const atLast = currentProject === projects.length - 1;
+      const threshold = 80;
 
-      if (diff > threshold) { // swipe up (go down)
+      if (diff > threshold) {
+        // swipe up (go down)
         if (!atLast) {
-          touchStartY.current = null
-          goTo(currentProject + 1, 1)
+          touchStartY.current = null;
+          goTo(currentProject + 1, 1);
         }
-      } else if (diff < -threshold) { // swipe down (go up)
+      } else if (diff < -threshold) {
+        // swipe down (go up)
         if (!atFirst) {
-          touchStartY.current = null
-          goTo(currentProject - 1, -1)
+          touchStartY.current = null;
+          goTo(currentProject - 1, -1);
         }
       }
-    }
-    const touchEnd = () => { touchStartY.current = null }
+    };
+    const touchEnd = () => {
+      touchStartY.current = null;
+    };
 
-    el.addEventListener('wheel', wheelHandler, { passive: false })
-    el.addEventListener('touchstart', touchStart, { passive: true })
-    el.addEventListener('touchmove', touchMove, { passive: true })
-    el.addEventListener('touchend', touchEnd)
+    el.addEventListener("wheel", wheelHandler, { passive: false });
+    el.addEventListener("touchstart", touchStart, { passive: true });
+    el.addEventListener("touchmove", touchMove, { passive: true });
+    el.addEventListener("touchend", touchEnd);
     return () => {
-      el.removeEventListener('wheel', wheelHandler)
-      el.removeEventListener('touchstart', touchStart)
-      el.removeEventListener('touchmove', touchMove)
-      el.removeEventListener('touchend', touchEnd)
-    }
-  }, [currentProject, animating, goTo])
+      el.removeEventListener("wheel", wheelHandler);
+      el.removeEventListener("touchstart", touchStart);
+      el.removeEventListener("touchmove", touchMove);
+      el.removeEventListener("touchend", touchEnd);
+    };
+  }, [currentProject, animating, goTo]);
 
   // Keyboard navigation
   useEffect(() => {
     const keyHandler = (e: KeyboardEvent) => {
-      if (document.body.classList.contains('project-modal-open')) return
-      if (animating) return
-      if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-        goTo(currentProject + 1, 1)
-      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-        goTo(currentProject - 1, -1)
+      if (document.body.classList.contains("project-modal-open")) return;
+      if (animating) return;
+      if (e.key === "ArrowDown" || e.key === "PageDown") {
+        goTo(currentProject + 1, 1);
+      } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+        goTo(currentProject - 1, -1);
       }
-    }
-    window.addEventListener('keydown', keyHandler)
-    return () => window.removeEventListener('keydown', keyHandler)
-  }, [currentProject, animating, goTo])
+    };
+    window.addEventListener("keydown", keyHandler);
+    return () => window.removeEventListener("keydown", keyHandler);
+  }, [currentProject, animating, goTo]);
 
   return (
     <div ref={containerRef} className="relative h-screen overflow-hidden">
       {/* Background */}
       <div className="fixed inset-0 bg-black pointer-events-none">
-        <ParallaxBackground
-          currentIndex={currentProject}
-          colors={projects.map(p => p.color)}
-        />
+        <ParallaxBackground currentIndex={currentProject} colors={projects.map((p) => p.color)} />
       </div>
 
       {/* Slides */}
@@ -324,107 +348,107 @@ export function ScrollJackingProjects() {
             key={p.id}
             aria-label={`Go to ${p.title}`}
             onClick={() => !animating && goTo(i, i > currentProject ? 1 : -1)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${i === currentProject ? 'bg-white scale-125 shadow-[0_0_0_4px_rgba(255,255,255,0.2)]' : 'bg-white/30 hover:bg-white/60'}`}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${i === currentProject ? "bg-white scale-125 shadow-[0_0_0_4px_rgba(255,255,255,0.2)]" : "bg-white/30 hover:bg-white/60"}`}
           />
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 interface ProjectSectionProps {
-  project: Project
-  index: number
-  isActive: boolean
-  direction: number
+  project: Project;
+  index: number;
+  isActive: boolean;
+  direction: number;
 }
 
 function ProjectSection({ project, index, direction }: ProjectSectionProps) {
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const [showIframe, setShowIframe] = useState(false)
-  const [iframeLoading, setIframeLoading] = useState(false)
-  const [iframeError, setIframeError] = useState(false)
-  const [isExpanded, setIsExpanded] = useState(false)
-  const [imgLoaded, setImgLoaded] = useState(false)
-  const [imgError, setImgError] = useState(false)
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [showIframe, setShowIframe] = useState(false);
+  const [iframeLoading, setIframeLoading] = useState(false);
+  const [iframeError, setIframeError] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   const variants = {
     enter: (dir: number) => ({
       y: dir > 0 ? 120 : -120,
       opacity: 0,
       scale: 0.92,
-      filter: 'blur(6px)'
+      filter: "blur(6px)",
     }),
     center: {
       y: 0,
       opacity: 1,
       scale: 1,
-      filter: 'blur(0px)',
-      transition: { duration: 0.9, ease: 'easeOut' }
+      filter: "blur(0px)",
+      transition: { duration: 0.9, ease: "easeOut" },
     },
     exit: (dir: number) => ({
       y: dir > 0 ? -120 : 120,
       opacity: 0,
       scale: 0.92,
-      filter: 'blur(6px)',
-      transition: { duration: 0.6, ease: 'easeIn' }
-    })
-  }
+      filter: "blur(6px)",
+      transition: { duration: 0.6, ease: "easeIn" },
+    }),
+  };
 
   const handleLoadIframe = () => {
-    setShowIframe(true)
-    setIframeLoading(true)
-    setIframeError(false)
-  }
+    setShowIframe(true);
+    setIframeLoading(true);
+    setIframeError(false);
+  };
 
   const handleIframeLoad = () => {
-    setIframeLoading(false)
-    setIframeError(false)
-  }
+    setIframeLoading(false);
+    setIframeError(false);
+  };
 
   const handleIframeError = () => {
-    setIframeLoading(false)
-    setIframeError(true)
-  }
+    setIframeLoading(false);
+    setIframeError(true);
+  };
 
   // Handle body scroll when expanded
   useEffect(() => {
     if (isExpanded) {
-      document.body.style.overflow = 'hidden'
-      document.body.classList.add('project-modal-open')
-      if (typeof window !== 'undefined') {
-        window.dispatchEvent(new CustomEvent('projectModalChange', { detail: { open: true } }))
+      document.body.style.overflow = "hidden";
+      document.body.classList.add("project-modal-open");
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("projectModalChange", { detail: { open: true } }));
       }
     } else {
-      document.body.style.overflow = 'unset'
-      document.body.classList.remove('project-modal-open')
-      if (typeof window !== 'undefined') {
-        window.dispatchEvent(new CustomEvent('projectModalChange', { detail: { open: false } }))
+      document.body.style.overflow = "unset";
+      document.body.classList.remove("project-modal-open");
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("projectModalChange", { detail: { open: false } }));
       }
     }
 
     return () => {
-      document.body.style.overflow = 'unset'
-      document.body.classList.remove('project-modal-open')
-    }
-  }, [isExpanded])
+      document.body.style.overflow = "unset";
+      document.body.classList.remove("project-modal-open");
+    };
+  }, [isExpanded]);
 
   // Close on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isExpanded) {
-        setIsExpanded(false)
+      if (e.key === "Escape" && isExpanded) {
+        setIsExpanded(false);
       }
-    }
+    };
 
     if (isExpanded) {
-      document.addEventListener('keydown', handleEscape)
+      document.addEventListener("keydown", handleEscape);
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape)
-    }
-  }, [isExpanded])
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isExpanded]);
 
   return (
     <>
@@ -437,9 +461,7 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
         animate="center"
         exit="exit"
       >
-        <motion.div
-          className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center h-full"
-        >
+        <motion.div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center h-full">
           {/* Project Content */}
           <motion.div
             className="text-white z-10"
@@ -465,7 +487,11 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
             <motion.h1
               className="text-6xl md:text-8xl font-bold mb-6 leading-none drop-shadow-[0_4px_12px_rgba(0,0,0,0.4)]"
               initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: 0.9, ease: 'easeOut', delay: 0.15 } }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.9, ease: "easeOut", delay: 0.15 },
+              }}
             >
               {project.title}
             </motion.h1>
@@ -473,7 +499,11 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
             <motion.p
               className="text-xl text-white/80 mb-8 leading-relaxed max-w-2xl"
               initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: 0.9, ease: 'easeOut', delay: 0.25 } }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.9, ease: "easeOut", delay: 0.25 },
+              }}
             >
               {project.longDescription}
             </motion.p>
@@ -482,10 +512,14 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
             <motion.div
               className="flex flex-wrap gap-3 mb-8"
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: 0.9, ease: 'easeOut', delay: 0.35 } }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.9, ease: "easeOut", delay: 0.35 },
+              }}
             >
               {project.technologies.map((tech, techIndex) => {
-                const icon = techIcons[tech]
+                const icon = techIcons[tech];
                 return (
                   <motion.span
                     key={tech + techIndex}
@@ -498,7 +532,7 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
                     {icon && (
                       <Image
                         src={icon}
-                        alt={tech + ' logo'}
+                        alt={tech + " logo"}
                         width={18}
                         height={18}
                         className="object-contain rounded-sm"
@@ -507,14 +541,18 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
                     )}
                     <span>{tech}</span>
                   </motion.span>
-                )
+                );
               })}
             </motion.div>
 
             {/* Action Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: 0.9, ease: 'easeOut', delay: 0.45 } }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.9, ease: "easeOut", delay: 0.45 },
+              }}
               className="flex flex-wrap gap-4"
             >
               <motion.a
@@ -526,9 +564,9 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
                 whileTap={{ scale: 0.95 }}
               >
                 <ExternalLink className="w-5 h-5" />
-                <span>{project.isInteractive ? 'Open Project' : 'Visit Site'}</span>
+                <span>{project.isInteractive ? "Open Project" : "Visit Site"}</span>
               </motion.a>
-              {project.githubUrl && project.githubUrl !== '#' && (
+              {project.githubUrl && project.githubUrl !== "#" && (
                 <motion.a
                   href={project.githubUrl}
                   target="_blank"
@@ -553,13 +591,18 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
           <motion.div
             className="relative z-10"
             initial={{ opacity: 0, scale: 0.85, rotateY: 35 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0, transition: { duration: 0.9, ease: 'easeOut', delay: 0.25 } }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              rotateY: 0,
+              transition: { duration: 0.9, ease: "easeOut", delay: 0.25 },
+            }}
           >
             <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl bg-neutral-900">
               {!showIframe ? (
                 <div className="relative w-full h-full">
                   <div
-                    className={`w-full h-full flex items-center justify-center relative cursor-pointer group ${imgLoaded ? 'bg-black' : `bg-gradient-to-br ${project.color}`}`}
+                    className={`w-full h-full flex items-center justify-center relative cursor-pointer group ${imgLoaded ? "bg-black" : `bg-gradient-to-br ${project.color}`}`}
                     onClick={project.isInteractive ? handleLoadIframe : undefined}
                   >
                     <Image
@@ -568,7 +611,7 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
                       fill
                       onLoad={() => setImgLoaded(true)}
                       onError={() => setImgError(true)}
-                      className={`object-cover transition-opacity duration-500 ${imgLoaded ? 'opacity-100' : 'opacity-0'} ${imgError ? 'opacity-0' : ''}`}
+                      className={`object-cover transition-opacity duration-500 ${imgLoaded ? "opacity-100" : "opacity-0"} ${imgError ? "opacity-0" : ""}`}
                       sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 600px"
                       priority={index < 2}
                     />
@@ -578,7 +621,9 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
                       </span>
                     )}
                     {imgError && (
-                      <span className="absolute bottom-2 left-2 text-xs bg-red-600 text-white px-2 py-1 rounded">image error</span>
+                      <span className="absolute bottom-2 left-2 text-xs bg-red-600 text-white px-2 py-1 rounded">
+                        image error
+                      </span>
                     )}
                     {project.isInteractive && (
                       <>
@@ -621,7 +666,11 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
                         <motion.div
                           className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"
                           animate={{ rotate: 360 }}
-                          transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
                         />
                         <p className="text-gray-600 text-sm">Loading interactive demo...</p>
                       </div>
@@ -633,7 +682,9 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
                         <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                           <ExternalLink className="w-8 h-8 text-red-600" />
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Preview Not Available</h3>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                          Preview Not Available
+                        </h3>
                         <p className="text-gray-600 text-sm mb-4">{project.fallbackMessage}</p>
                         <a
                           href={project.liveUrl}
@@ -651,7 +702,7 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
                     <iframe
                       key={`iframe-${project.id}`}
                       src={project.iframeUrl}
-                      className={`w-full h-full border-0 ${iframeLoading || iframeError ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
+                      className={`w-full h-full border-0 ${iframeLoading || iframeError ? "opacity-0" : "opacity-100"} transition-opacity duration-300`}
                       onLoad={handleIframeLoad}
                       onError={handleIframeError}
                       title={`${project.title} - Live Preview`}
@@ -667,12 +718,17 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
             <motion.div
               className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full backdrop-blur-sm"
               animate={{ y: [0, -20, 0], rotate: [0, 180, 360] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             />
             <motion.div
               className="absolute -bottom-6 -left-6 w-16 h-16 bg-white/5 rounded-full backdrop-blur-sm"
               animate={{ y: [0, 15, 0], rotate: [360, 180, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1,
+              }}
             />
           </motion.div>
         </motion.div>
@@ -696,7 +752,7 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div className="absolute top-4 right-4 z-20">
                 <motion.button
@@ -718,8 +774,12 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
                   sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
                 />
               ) : (
-                <div className={`w-full h-full bg-gradient-to-br ${project.color} flex items-center justify-center`}>
-                  <span className="text-8xl font-bold text-white/20">{project.title.charAt(0)}</span>
+                <div
+                  className={`w-full h-full bg-gradient-to-br ${project.color} flex items-center justify-center`}
+                >
+                  <span className="text-8xl font-bold text-white/20">
+                    {project.title.charAt(0)}
+                  </span>
                 </div>
               )}
             </motion.div>
@@ -727,5 +787,5 @@ function ProjectSection({ project, index, direction }: ProjectSectionProps) {
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }

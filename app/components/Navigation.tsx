@@ -1,47 +1,47 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
-import { useTheme } from './ThemeProvider'
-import { Moon, Sun, Menu, X } from 'lucide-react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, Moon, Sun, X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useTheme } from "./ThemeProvider";
 
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Skills', href: '/skills' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Experience', href: '/experience' },
-  { name: 'Contact', href: '/contact' },
-]
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Skills", href: "/skills" },
+  { name: "Projects", href: "/projects" },
+  { name: "Experience", href: "/experience" },
+  { name: "Contact", href: "/contact" },
+];
 
 export function Navigation() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [hideForModal, setHideForModal] = useState(false)
-  const { theme, setTheme } = useTheme()
-  const pathname = usePathname()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hideForModal, setHideForModal] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const pathname = usePathname();
 
   // Listen for fullscreen project modal state changes
   useEffect(() => {
     const handler = (e: Event) => {
-      const custom = e as CustomEvent<{ open: boolean }>
-      setHideForModal(!!custom.detail?.open)
-    }
-    window.addEventListener('projectModalChange', handler as EventListener)
-    return () => window.removeEventListener('projectModalChange', handler as EventListener)
-  }, [])
+      const custom = e as CustomEvent<{ open: boolean }>;
+      setHideForModal(!!custom.detail?.open);
+    };
+    window.addEventListener("projectModalChange", handler as EventListener);
+    return () => window.removeEventListener("projectModalChange", handler as EventListener);
+  }, []);
 
   return (
     <motion.nav
-      className={`fixed top-0 w-full z-50 bg-transparent transition-opacity duration-300 ${hideForModal ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
+      className={`fixed top-0 w-full z-50 bg-transparent transition-opacity duration-300 ${hideForModal ? "pointer-events-none opacity-0" : "opacity-100"}`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-  <div className="flex items-center h-20 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="flex items-center h-20 relative">
           {/* Desktop-only logo using favicon */}
           <motion.div
             className="flex-shrink-0 hidden md:block"
@@ -78,8 +78,8 @@ export function Navigation() {
                   href={item.href}
                   className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 group ${
                     pathname === item.href
-                      ? 'text-blue-600 dark:text-blue-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                      ? "text-blue-600 dark:text-blue-400"
+                      : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
                   }`}
                 >
                   {item.name}
@@ -100,14 +100,14 @@ export function Navigation() {
           <div className="flex items-center space-x-3 ml-auto relative z-10">
             {/* Theme Toggle */}
             <motion.button
-              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               className="p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300"
               aria-label="Toggle theme"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
               <AnimatePresence mode="wait">
-                {theme === 'light' ? (
+                {theme === "light" ? (
                   <motion.div
                     key="moon"
                     initial={{ rotate: -90, opacity: 0 }}
@@ -174,7 +174,7 @@ export function Navigation() {
             <motion.div
               className="md:hidden"
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
@@ -190,8 +190,8 @@ export function Navigation() {
                       href={item.href}
                       className={`block px-4 py-3 text-base font-medium rounded-xl transition-all duration-300 ${
                         pathname === item.href
-                          ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
-                          : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                          ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20"
+                          : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800/50"
                       }`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -205,5 +205,5 @@ export function Navigation() {
         </AnimatePresence>
       </div>
     </motion.nav>
-  )
+  );
 }

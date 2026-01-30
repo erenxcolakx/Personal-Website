@@ -1,59 +1,19 @@
-'use client'
+"use client";
 
-import { ExternalLink, Github, Play, ChevronDown } from 'lucide-react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
-import Image from 'next/image'
-import { ScrollJackingProjects } from './HugeInspired/ScrollJackingProjects'
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ChevronDown, ExternalLink, Github, Play } from "lucide-react";
+import Image from "next/image";
+import { useRef } from "react";
+import projects from "../projects/data/projects";
+import { ScrollJackingProjects } from "./HugeInspired/ScrollJackingProjects";
 
-const projects = [
-  {
-    title: 'Hiversion',
-    description: 'Developing a SaaS platform that combines microservices with a modern frontend for scalable and modular software solutions. Spring Boot used for backend microservices; Next.js and Tailwind CSS for frontend interface.',
-    image: '/images/projects/hiversion.png',
-    technologies: ['Next.js', 'Spring Boot', 'PostgreSQL', 'Tailwind CSS'],
-    liveUrl: '#',
-    githubUrl: '#',
-    featured: true,
-    placeholder: '🚀'
-  },
-  {
-    title: 'HitnessLab',
-    description: 'Built a fitness education platform where instructors can upload and manage training videos. Developed microservices for course and user management in Spring Boot, integrated with a Next.js frontend.',
-    image: '/images/projects/hitnesslab.png',
-    technologies: ['Spring Boot', 'Next.js', 'Tailwind CSS', 'Vercel'],
-    liveUrl: '#',
-    githubUrl: '#',
-    featured: true,
-    placeholder: '🏋️'
-  },
-  {
-    title: 'SmartTestAI',
-    description: 'AI-powered testing platform that automatically generates test cases and validates software functionality using machine learning algorithms.',
-    image: '/images/projects/smarttestai.png',
-    technologies: ['Python', 'TensorFlow', 'FastAPI', 'React'],
-    liveUrl: '#',
-    githubUrl: '#',
-    featured: true,
-    placeholder: '🤖'
-  },
-  {
-    title: 'DS Dashboard',
-    description: 'Comprehensive analytics dashboard for data science projects with interactive charts, real-time updates, and advanced data visualization features.',
-    image: '/images/projects/dsdashboard.png',
-    technologies: ['Next.js', 'D3.js', 'Python', 'FastAPI'],
-    liveUrl: '#',
-    githubUrl: '#',
-    featured: false,
-    placeholder: '📊'
-  }
-]
+// project metadata is imported from app/projects/data/projects.ts
 
 export function Projects() {
   return (
     <>
       {/* Intro Section */}
-  <section className="pt-28 pb-20 bg-gray-50 dark:bg-gray-900 relative min-h-screen">
+      <section className="pt-28 pb-20 bg-gray-50 dark:bg-gray-900 relative min-h-screen">
         <div className="container mx-auto px-6">
           {/* Parallax Text */}
           <div className="overflow-hidden mb-20 pointer-events-none select-none relative z-20">
@@ -79,15 +39,16 @@ export function Projects() {
             viewport={{ once: true }}
             className="text-center relative  max-w-5xl mx-auto z-50"
           >
-            <h2 className="text-6xl md:text-8xl font-bold text-black dark:text-white mb-6">
+            <h2 className="text-6xl md:text-8xl font-bold text-white dark:text-white mb-6">
               FEATURED
               <br />
               <span className="text-gray-600 dark:text-gray-400">PROJECTS</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-12">
-              A collection of projects that showcase innovation, creativity, and technical excellence.
+              A collection of projects that showcase innovation, creativity, and technical
+              excellence.
             </p>
-            
+
             <motion.div
               className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider"
               initial={{ opacity: 0 }}
@@ -96,7 +57,6 @@ export function Projects() {
             >
               Scroll to explore each project
             </motion.div>
-
           </motion.div>
 
           {/* Scroll Down Indicator */}
@@ -113,17 +73,19 @@ export function Projects() {
             >
               Scroll Down
             </motion.div>
-            
+
             <motion.div
               className="relative bg-white dark:bg-black rounded-full p-3 shadow-lg border border-gray-200 dark:border-gray-700"
               animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+              transition={{
+                duration: 1.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             >
-              <ChevronDown
-                className="w-6 h-6 text-black dark:text-white"
-              />
+              <ChevronDown className="w-6 h-6 text-black dark:text-white" />
             </motion.div>
-            
+
             {/* Scroll line indicator */}
             <motion.div
               className="w-1 h-20 bg-gradient-to-b from-black to-transparent dark:from-white rounded-full shadow-lg"
@@ -138,24 +100,24 @@ export function Projects() {
       {/* Scroll Jacking Projects Section */}
       <ScrollJackingProjects />
     </>
-  )
+  );
 }
 
 // Project Card Component with Huge Inc. styling
 interface ProjectCardProps {
-  project: typeof projects[0];
+  project: any;
   index: number;
 }
 
 function ProjectCard({ project, index }: ProjectCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    offset: ["start end", "end start"]
-  })
+    offset: ["start end", "end start"],
+  });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100])
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   return (
     <motion.div
@@ -175,7 +137,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        
+
         {/* Overlay */}
         <motion.div
           className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -207,9 +169,9 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           </motion.h3>
           <span className="text-sm text-gray-500 dark:text-gray-400 font-mono">2024</span>
         </div>
-        
+
         <div className="flex flex-wrap gap-2 mb-3">
-          {project.technologies.slice(0, 3).map((tech) => (
+          {project.technologies.slice(0, 3).map((tech: string) => (
             <span
               key={tech}
               className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs font-medium uppercase tracking-wider"
@@ -218,7 +180,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             </span>
           ))}
         </div>
-        
+
         <motion.p
           className="text-gray-700 dark:text-gray-300 leading-relaxed"
           initial={{ opacity: 0.7 }}
@@ -228,5 +190,5 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         </motion.p>
       </div>
     </motion.div>
-  )
+  );
 }

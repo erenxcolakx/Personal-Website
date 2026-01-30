@@ -1,62 +1,66 @@
-'use client'
+"use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
-import { SkillOrb } from './HugeInspired/SkillOrb'
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { SkillOrb } from "./HugeInspired/SkillOrb";
 
 const skills = [
-  { name: 'Python', icon: '/images/python.png' },
-  { name: 'NumPy', icon: '/images/numpy.png' },
-  { name: 'Pandas', icon: '/images/pandas.png' },
-  { name: 'Seaborn', icon: '/images/seaborn.png' },
-  { name: 'Matplotlib', icon: '/images/matplot.png' },
-  { name: 'C', icon: '/images/clang.png' },
-  { name: 'Java', icon: '/images/java.png' },
-  { name: 'JavaScript', icon: '/images/js.png' },
-  { name: 'HTML5', icon: '/images/html.png' },
-  { name: 'CSS3', icon: '/images/css.png' },
-  { name: 'Tailwind', icon: '/images/tailwind.png' },
-  { name: 'Bootstrap', icon: '/images/bootstrap.png' },
-  { name: 'jQuery', icon: '/images/jquery.png' },
-  { name: 'Node.js', icon: '/images/node.png' },
-  { name: 'Express.js', icon: '/images/express.png' },
-  { name: 'PostgreSQL', icon: '/images/postgresql.png' },
-  { name: 'React.js', icon: '/images/react.webp' },
-  { name: 'Next.js', icon: '/images/nextjs.png' },
-  { name: 'Docker', icon: '/images/docker.webp' }
-]
+  { name: "Python", icon: "/images/python.png" },
+  { name: "NumPy", icon: "/images/numpy.png" },
+  { name: "Pandas", icon: "/images/pandas.png" },
+  { name: "Seaborn", icon: "/images/seaborn.png" },
+  { name: "Matplotlib", icon: "/images/matplot.png" },
+  { name: "C", icon: "/images/clang.png" },
+  { name: "Java", icon: "/images/java.png" },
+  { name: "JavaScript", icon: "/images/js.png" },
+  { name: "HTML5", icon: "/images/html.png" },
+  { name: "CSS3", icon: "/images/css.png" },
+  { name: "Tailwind", icon: "/images/tailwind.png" },
+  { name: "Bootstrap", icon: "/images/bootstrap.png" },
+  { name: "jQuery", icon: "/images/jquery.png" },
+  { name: "Node.js", icon: "/images/node.png" },
+  { name: "Express.js", icon: "/images/express.png" },
+  { name: "PostgreSQL", icon: "/images/postgresql.png" },
+  { name: "React.js", icon: "/images/react.webp" },
+  { name: "Next.js", icon: "/images/nextjs.png" },
+  { name: "Docker", icon: "/images/docker.webp" },
+];
 
 export function Skills() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
-  })
+    offset: ["start end", "end start"],
+  });
 
   return (
-    <section ref={containerRef} id="skills" className="py-32 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-black dark:to-gray-800 text-black dark:text-white relative overflow-hidden">
+    <section
+      ref={containerRef}
+      id="skills"
+      className="py-32 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-black dark:to-gray-800 text-black dark:text-white relative overflow-hidden"
+    >
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="grid grid-cols-8 h-full">
           {Array.from({ length: 8 }).map((_, i) => (
-            <motion.div 
-              key={i} 
+            <motion.div
+              key={i}
               className="border-r border-black/20 dark:border-white/20"
-              animate={{ 
+              animate={{
                 opacity: [0.1, 0.3, 0.1],
-                scaleY: [1, 1.02, 1]
+                scaleY: [1, 1.02, 1],
               }}
-              transition={{ 
-                duration: 4, 
-                repeat: Infinity, 
+              transition={{
+                duration: 4,
+                repeat: Infinity,
                 delay: i * 0.2,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             />
           ))}
         </div>
       </div>
-      
+
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {Array.from({ length: 20 }).map((_, i) => (
@@ -70,13 +74,13 @@ export function Skills() {
             animate={{
               y: [-20, -100],
               opacity: [0, 1, 0],
-              scale: [0, 1, 0]
+              scale: [0, 1, 0],
             }}
             transition={{
               duration: Math.random() * 3 + 2,
               repeat: Infinity,
               delay: Math.random() * 2,
-              ease: "easeOut"
+              ease: "easeOut",
             }}
           />
         ))}
@@ -90,7 +94,7 @@ export function Skills() {
             animate={{ x: [0, -100] }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
           >
-            SKILLS • TECHNOLOGIES • 
+            SKILLS • TECHNOLOGIES •
           </motion.div>
         </div>
 
@@ -101,15 +105,15 @@ export function Skills() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <motion.h2 
+          <motion.h2
             className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 dark:from-white dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent"
-            animate={{ 
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
             }}
-            transition={{ 
-              duration: 5, 
-              repeat: Infinity, 
-              ease: "linear" 
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "linear",
             }}
             style={{ backgroundSize: "200% 200%" }}
           >
@@ -117,7 +121,7 @@ export function Skills() {
             <br />
             <span className="text-gray-500 dark:text-gray-400">TECHNOLOGIES</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -128,7 +132,7 @@ export function Skills() {
           </motion.p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 justify-items-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -141,7 +145,7 @@ export function Skills() {
         </motion.div>
 
         {/* Additional Skills Cloud */}
-        <motion.div 
+        <motion.div
           className="mt-24 text-center"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -151,11 +155,22 @@ export function Skills() {
           <h3 className="text-3xl font-bold text-gray-800 dark:text-white mb-12 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             ALSO EXPERIENCED WITH
           </h3>
-          
+
           <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
             {[
-              'TypeScript', 'Spring Boot', 'SQL (Postgres)', 'Git', 'GitHub', 'Vercel', 
-              'Power BI', 'AWS', 'Kubernetes', 'Postman', 'Figma', 'Plotly', 'Scikit-Learn'
+              "TypeScript",
+              "Spring Boot",
+              "SQL (Postgres)",
+              "Git",
+              "GitHub",
+              "Vercel",
+              "Power BI",
+              "AWS",
+              "Kubernetes",
+              "Postman",
+              "Figma",
+              "Plotly",
+              "Scikit-Learn",
             ].map((tech, index) => (
               <motion.span
                 key={tech}
@@ -173,5 +188,5 @@ export function Skills() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

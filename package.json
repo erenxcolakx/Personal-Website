@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:biome": "biomejs check",
+    "format": "biomejs format",
+    "check:fix": "npx biome check --write && npx biome format",
     "export": "next build",
     "clean": "node -e \"const fs=require('fs'),p=['.next','out'];p.forEach(d=>fs.rmSync(d,{recursive:true,force:true}));console.log('Cleaned .next and out');\"",
     "serve": "npx serve@latest out"
@@ -19,10 +22,13 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.13",
     "@types/node": "^20.8.0",
     "@types/react": "^18.2.25",
     "@types/react-dom": "^18.2.10",
     "autoprefixer": "^10.4.16",
+    "baseline-browser-mapping": "^2.9.19",
+    "biomejs": "^0.0.0",
     "eslint": "^8.51.0",
     "eslint-config-next": "14.0.0",
     "postcss": "^8.4.31",
